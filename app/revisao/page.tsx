@@ -1,6 +1,6 @@
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { getReviewQueue, getQuestions } from "@/lib/db/queries";
+import { getReviewQueue, getQuestionsByIds } from "@/lib/db/queries";
 import RevisaoClient from "./RevisaoClient";
 
 export default async function RevisaoPage() {
@@ -11,9 +11,8 @@ export default async function RevisaoPage() {
   if (!queue.length) redirect("/dashboard");
 
   const questionIds = queue.map(q => q.questionId);
-  const allQuestions = await getQuestions({ enfase: "adm_controle" });
-  const questions = allQuestions.filter(q => questionIds.includes(q.id));
-  const errosMap  = Object.fromEntries(queue.map(q => [q.questionId, { erros: q.erros, tentativas: q.tentativas }]));
+  const questions   = await getQuestionsByIds(questionIds);
+  const errosMap    = Object.fromEntries(queue.map(q => [q.questionId, { erros: q.erros, tentativas: q.tentativas }]));
 
   return <RevisaoClient questions={questions} errosMap={errosMap} userId={session.user.id}/>;
 }

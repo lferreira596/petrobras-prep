@@ -3,7 +3,7 @@ import {
   questions, userQuestionProgress, studySessions, users, studyPlans,
   type Question, type UserQuestionProgress,
 } from "./schema";
-import { and, eq, lte, desc, sql, count, avg } from "drizzle-orm";
+import { and, eq, lte, desc, sql, count, avg, inArray } from "drizzle-orm";
 
 // ── Questions ─────────────────────────────────────────────────
 export async function getQuestions(filters: {
@@ -26,6 +26,11 @@ export async function getQuestions(filters: {
     .from(questions)
     .where(and(...conditions))
     .limit(filters.limit ?? 200);
+}
+
+export async function getQuestionsByIds(ids: string[]) {
+  if (!ids.length) return [];
+  return db.select().from(questions).where(inArray(questions.id, ids));
 }
 
 // ── Progress ──────────────────────────────────────────────────
@@ -67,9 +72,8 @@ export async function upsertProgress(
   const now = new Date();
 
   if (!cur) {
-    // primeira tentativa
     const erros = acertou ? 0 : 1;
-    const proximaRevisao = acertou ? null : addDays(now, 1);
+    const proximaRevisao = acertou ? null : now; // erros aparecem imediatamente na fila
     await db.insert(userQuestionProgress).values({
       userId, questionId, tentativas: 1,
       acertos: acertou ? 1 : 0, erros,
