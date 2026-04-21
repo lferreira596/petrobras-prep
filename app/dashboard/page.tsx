@@ -1,13 +1,17 @@
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { getUserStats, getStudyPlan } from "@/lib/db/queries";
+import { getUserStats, getStudyPlan, getUserPlan } from "@/lib/db/queries";
 
 export default async function DashboardPage() {
   const session = await auth();
   if (!session?.user?.id) redirect("/login");
 
-  const stats = await getUserStats(session.user.id);
-  const plan  = await getStudyPlan(session.user.id);
+  const [stats, plan, userPlan] = await Promise.all([
+    getUserStats(session.user.id),
+    getStudyPlan(session.user.id),
+    getUserPlan(session.user.id),
+  ]);
+  const isPremium = userPlan === "premium";
 
   return (
     <main style={{
@@ -17,18 +21,46 @@ export default async function DashboardPage() {
     }}>
       <div style={{maxWidth:720, margin:"0 auto"}}>
         {/* Header */}
-        <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:24,paddingBottom:16,borderBottom:"1px solid rgba(255,255,255,0.07)"}}>
+        <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16,paddingBottom:16,borderBottom:"1px solid rgba(255,255,255,0.07)"}}>
           {session.user.image && (
             <img src={session.user.image} alt="" width={40} height={40} style={{borderRadius:"50%",border:"2px solid rgba(0,229,180,0.3)"}}/>
           )}
           <div style={{flex:1}}>
             <div style={{fontSize:16,fontWeight:700}}>Olá, {session.user.name?.split(" ")[0]} 👋</div>
-            <div style={{fontSize:11,color:"#7a82a8"}}>Ênfase: Administração e Controle</div>
+            <div style={{display:"flex",alignItems:"center",gap:8,marginTop:3}}>
+              <div style={{fontSize:11,color:"#7a82a8"}}>Ênfase: Administração e Controle</div>
+              {isPremium ? (
+                <span style={{background:"rgba(250,204,21,0.15)",border:"1px solid rgba(250,204,21,0.35)",borderRadius:99,padding:"2px 8px",fontSize:10,color:"#facc15",fontWeight:700}}>★ PREMIUM</span>
+              ) : (
+                <span style={{background:"rgba(100,116,139,0.2)",border:"1px solid rgba(100,116,139,0.3)",borderRadius:99,padding:"2px 8px",fontSize:10,color:"#94a3b8",fontWeight:700}}>GRATUITO</span>
+              )}
+            </div>
           </div>
           <div style={{background:"rgba(245,200,66,0.1)",border:"1px solid rgba(245,200,66,0.2)",borderRadius:99,padding:"4px 12px",fontSize:12,color:"#f5c842",fontWeight:700}}>
             🔥 {stats.streakDias}d streak
           </div>
         </div>
+
+        {/* Banner upgrade — só para free */}
+        {!isPremium && (
+          <a href="/upgrade" style={{display:"block",textDecoration:"none",marginBottom:16}}>
+            <div style={{background:"linear-gradient(135deg,rgba(250,204,21,0.1),rgba(251,146,60,0.07))",border:"1px solid rgba(250,204,21,0.25)",borderRadius:16,padding:"14px 16px"}}>
+              <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12}}>
+                <div>
+                  <div style={{fontSize:13,fontWeight:800,color:"#facc15",marginBottom:4}}>
+                    ★ Você está no plano Gratuito
+                  </div>
+                  <div style={{fontSize:11,color:"#94a3b8",lineHeight:1.6}}>
+                    Limitado a <strong style={{color:"#dde4ff"}}>60 questões</strong> · Sem simulado cronometrado · Sem analytics avançado
+                  </div>
+                </div>
+                <div style={{flexShrink:0,background:"#facc15",color:"#0f172a",borderRadius:8,padding:"6px 14px",fontSize:12,fontWeight:700,whiteSpace:"nowrap"}}>
+                  Ver Premium →
+                </div>
+              </div>
+            </div>
+          </a>
+        )}
 
         {/* Stats Grid */}
         <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:10,marginBottom:20}}>
@@ -66,17 +98,24 @@ export default async function DashboardPage() {
         {/* Quick Actions */}
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:20}}>
           {[
-            {icon:"🧠",label:"Iniciar Quiz",desc:"Nova sessão de estudo",href:"/quiz",cor:"#00e5b4"},
-            {icon:"🔁",label:"Revisar Erros",desc:`${stats.filaRevisao} questões`,href:"/revisao",cor:"#ff5050"},
-            {icon:"📊",label:"Meu Progresso",desc:"Ver por disciplina",href:"/dashboard#stats",cor:"#a78bfa"},
-            {icon:"📅",label:"Plano Semanal",desc:"Ver cronograma",href:"/plano",cor:"#f5c842"},
+            {icon:"🧠",label:"Iniciar Quiz",desc:"Nova sessão de estudo",href:"/quiz",cor:"#00e5b4",locked:false},
+            {icon:"🔁",label:"Revisar Erros",desc:`${stats.filaRevisao} questões`,href:"/revisao",cor:"#ff5050",locked:false},
+            {icon:"📅",label:"Plano Semanal",desc:"Ver cronograma",href:"/plano",cor:"#f5c842",locked:false},
+            {icon:"⏱",label:"Simulado Completo",desc:"100q · 4h · Premium",href: isPremium ? "/simulado" : "/upgrade",cor:"#a78bfa",locked:!isPremium},
           ].map(a=>(
             <a key={a.label} href={a.href} style={{
               display:"block",padding:"16px",textDecoration:"none",
-              background:`${a.cor}10`,border:`1px solid ${a.cor}25`,borderRadius:14,
+              background: a.locked ? "rgba(100,116,139,0.08)" : `${a.cor}10`,
+              border:`1px solid ${a.locked ? "rgba(100,116,139,0.2)" : a.cor+"25"}`,
+              borderRadius:14,position:"relative",opacity: a.locked ? 0.8 : 1,
             }}>
-              <div style={{fontSize:26,marginBottom:6}}>{a.icon}</div>
-              <div style={{fontSize:13,fontWeight:700,color:a.cor}}>{a.label}</div>
+              {a.locked && (
+                <div style={{position:"absolute",top:8,right:8,fontSize:10,background:"rgba(250,204,21,0.15)",color:"#facc15",borderRadius:6,padding:"2px 6px",fontWeight:700}}>
+                  ★ Premium
+                </div>
+              )}
+              <div style={{fontSize:26,marginBottom:6}}>{a.locked ? "🔒" : a.icon}</div>
+              <div style={{fontSize:13,fontWeight:700,color: a.locked ? "#64748b" : a.cor}}>{a.label}</div>
               <div style={{fontSize:11,color:"#7a82a8",marginTop:2}}>{a.desc}</div>
             </a>
           ))}
