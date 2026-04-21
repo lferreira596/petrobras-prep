@@ -6,7 +6,9 @@ import { relations } from "drizzle-orm";
 
 // ─── Enums ────────────────────────────────────────────────────
 export const planEnum      = pgEnum("plan",      ["free","premium"]);
-export const modoEnum      = pgEnum("modo",      ["quiz","revisao"]);
+export const roleEnum      = pgEnum("role",      ["user","admin"]);
+export const subStatusEnum = pgEnum("sub_status",["active","cancelled","past_due"]);
+export const modoEnum      = pgEnum("modo",      ["quiz","revisao","simulado"]);
 export const bancaEnum     = pgEnum("banca",     ["CESGRANRIO","CEBRASPE"]);
 export const difEnum       = pgEnum("dificuldade",["facil","media","dificil"]);
 export const tipoEnum      = pgEnum("tipo",      ["multipla","certo_errado"]);
@@ -22,6 +24,7 @@ export const users = pgTable("users", {
   emailVerified : timestamp("email_verified", { mode: "date" }),
   image         : text("image"),
   plan          : planEnum("plan").default("free").notNull(),
+  role          : roleEnum("role").default("user").notNull(),
   streakDias    : integer("streak_dias").default(0).notNull(),
   ultimoEstudo  : timestamp("ultimo_estudo", { mode: "date" }),
   createdAt     : timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
@@ -72,12 +75,26 @@ export const questions = pgTable("questions", {
   correta   : integer("correta").notNull(),
   explicacao: text("explicacao").notNull(),
   enfase    : text("enfase"),         // "adm_controle","suprimentos","operacao"...
+  isPremium : boolean("is_premium").default(false).notNull(),
   ativa     : boolean("ativa").default(true).notNull(),
   createdAt : timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
 }, (t) => ({
   areaIdx  : index("questions_area_idx").on(t.area),
   bancaIdx : index("questions_banca_idx").on(t.banca),
   difIdx   : index("questions_dif_idx").on(t.dif),
+}));
+
+// ─── Subscriptions ────────────────────────────────────────────
+export const subscriptions = pgTable("subscriptions", {
+  id               : uuid("id").primaryKey().defaultRandom(),
+  userId           : uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }).unique(),
+  mpSubscriptionId : text("mp_subscription_id").notNull(),
+  status           : subStatusEnum("status").default("active").notNull(),
+  validUntil       : timestamp("valid_until", { mode: "date" }).notNull(),
+  createdAt        : timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
+  updatedAt        : timestamp("updated_at", { mode: "date" }).defaultNow().notNull(),
+}, (t) => ({
+  userIdx: index("sub_user_idx").on(t.userId),
 }));
 
 // ─── User Question Progress ───────────────────────────────────
@@ -124,11 +141,12 @@ export const studyPlans = pgTable("study_plans", {
 
 // ─── Relations ────────────────────────────────────────────────
 export const usersRelations = relations(users, ({ many, one }) => ({
-  accounts  : many(accounts),
-  sessions  : many(sessions),
-  progress  : many(userQuestionProgress),
-  studySessions: many(studySessions),
-  studyPlan : one(studyPlans, { fields:[users.id], references:[studyPlans.userId] }),
+  accounts      : many(accounts),
+  sessions      : many(sessions),
+  progress      : many(userQuestionProgress),
+  studySessions : many(studySessions),
+  studyPlan     : one(studyPlans, { fields:[users.id], references:[studyPlans.userId] }),
+  subscription  : one(subscriptions, { fields:[users.id], references:[subscriptions.userId] }),
 }));
 
 export const questionsRelations = relations(questions, ({ many }) => ({
@@ -141,6 +159,7 @@ export type Question              = typeof questions.$inferSelect;
 export type UserQuestionProgress  = typeof userQuestionProgress.$inferSelect;
 export type StudySession          = typeof studySessions.$inferSelect;
 export type StudyPlan             = typeof studyPlans.$inferSelect;
+export type Subscription          = typeof subscriptions.$inferSelect;
 
 export interface StudyPlanConfig {
   diasSemana: {

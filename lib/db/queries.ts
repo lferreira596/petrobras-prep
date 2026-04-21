@@ -1,6 +1,6 @@
 import { db } from "./index";
 import {
-  questions, userQuestionProgress, studySessions, users, studyPlans,
+  questions, userQuestionProgress, studySessions, users, studyPlans, subscriptions,
   type Question, type UserQuestionProgress,
 } from "./schema";
 import { and, eq, lte, desc, sql, count, avg, inArray } from "drizzle-orm";
@@ -223,4 +223,40 @@ export async function getUsersForReminder() {
 
 export async function getUsersForWeeklyReport() {
   return db.select({ id: users.id, email: users.email, name: users.name }).from(users);
+}
+
+// ── Subscriptions ─────────────────────────────────────────────
+export async function getSubscription(userId: string) {
+  const rows = await db.select().from(subscriptions).where(eq(subscriptions.userId, userId)).limit(1);
+  return rows[0] ?? null;
+}
+
+export async function upsertSubscription(data: {
+  userId          : string;
+  mpSubscriptionId: string;
+  status          : "active" | "cancelled" | "past_due";
+  validUntil      : Date;
+}) {
+  const existing = await getSubscription(data.userId);
+  if (existing) {
+    await db.update(subscriptions)
+      .set({ mpSubscriptionId: data.mpSubscriptionId, status: data.status, validUntil: data.validUntil, updatedAt: new Date() })
+      .where(eq(subscriptions.userId, data.userId));
+  } else {
+    await db.insert(subscriptions).values(data);
+  }
+  // sincroniza plan no user
+  await db.update(users)
+    .set({ plan: data.status === "active" ? "premium" : "free" })
+    .where(eq(users.id, data.userId));
+}
+
+export async function getUserPlan(userId: string): Promise<"free" | "premium"> {
+  const rows = await db.select({ plan: users.plan }).from(users).where(eq(users.id, userId)).limit(1);
+  return rows[0]?.plan ?? "free";
+}
+
+export async function getUserRole(userId: string): Promise<"user" | "admin"> {
+  const rows = await db.select({ role: users.role }).from(users).where(eq(users.id, userId)).limit(1);
+  return rows[0]?.role ?? "user";
 }
