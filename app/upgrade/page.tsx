@@ -20,14 +20,22 @@ const FEATURES_PREMIUM = [
 
 export default function UpgradePage() {
   const [loading, setLoading] = useState(false);
+  const [erro, setErro] = useState<string | null>(null);
   const router = useRouter();
 
   async function handleUpgrade() {
     setLoading(true);
+    setErro(null);
     try {
       const res = await fetch("/api/checkout", { method: "POST" });
       const data = await res.json();
-      if (data.initPoint) window.location.href = data.initPoint;
+      if (data.initPoint) {
+        window.location.href = data.initPoint;
+      } else {
+        setErro(data.error ?? "Erro ao iniciar pagamento. Tente novamente.");
+      }
+    } catch {
+      setErro("Erro de conexão. Verifique sua internet e tente novamente.");
     } finally {
       setLoading(false);
     }
@@ -91,7 +99,12 @@ export default function UpgradePage() {
             >
               {loading ? "Redirecionando..." : "Assinar Premium"}
             </button>
-            <p style={{ textAlign: "center", color: "#475569", fontSize: "0.75rem", marginTop: "0.75rem" }}>
+            {erro && (
+              <p style={{ textAlign: "center", color: "#f87171", fontSize: "0.8rem", marginTop: "0.75rem", background: "rgba(239,68,68,0.1)", borderRadius: 8, padding: "0.5rem" }}>
+                ⚠ {erro}
+              </p>
+            )}
+            <p style={{ textAlign: "center", color: "#475569", fontSize: "0.75rem", marginTop: "0.5rem" }}>
               Pagamento seguro via MercadoPago
             </p>
           </div>
