@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { getUserStats, getStudyPlan, getUserPlan } from "@/lib/db/queries";
+import Image from "next/image";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -21,6 +22,12 @@ export default async function DashboardPage() {
     }}>
       <div style={{maxWidth:720, margin:"0 auto"}}>
         {/* Header */}
+        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:8,paddingBottom:12}}>
+          <Image src="/icon.png" alt="Petrobras Prep" width={28} height={28} style={{borderRadius:6,opacity:0.9}}/>
+          <span style={{fontWeight:800,fontSize:13,letterSpacing:"-0.2px",color:"#94a3b8"}}>
+            Petrobras <span style={{color:"#facc15"}}>Prep</span>
+          </span>
+        </div>
         <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16,paddingBottom:16,borderBottom:"1px solid rgba(255,255,255,0.07)"}}>
           {session.user.image && (
             <img src={session.user.image} alt="" width={40} height={40} style={{borderRadius:"50%",border:"2px solid rgba(0,229,180,0.3)"}}/>

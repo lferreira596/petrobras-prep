@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import Link from "next/link";
+import Image from "next/image";
 
 const FEATURES = [
   { icon: "📚", title: "60+ Questões Reais", desc: "Questões originais de CESGRANRIO e CEBRASPE, as bancas do concurso Petrobras." },
@@ -15,8 +16,17 @@ export default async function RootPage() {
 
   return (
     <main style={{ minHeight: "100vh", background: "#0f172a", color: "#f8fafc", fontFamily: "sans-serif" }}>
+      {/* Navbar */}
+      <nav style={{ maxWidth: 900, margin: "0 auto", padding: "1.25rem 1.5rem", display: "flex", alignItems: "center", gap: 10 }}>
+        <Image src="/icon.png" alt="Petrobras Prep" width={36} height={36} style={{ borderRadius: 8 }} />
+        <span style={{ fontWeight: 800, fontSize: "1.05rem", letterSpacing: "-0.3px" }}>
+          Petrobras <span style={{ color: "#facc15" }}>Prep</span>
+        </span>
+      </nav>
+
       {/* Hero */}
-      <section style={{ maxWidth: 900, margin: "0 auto", padding: "5rem 1.5rem 4rem", textAlign: "center" }}>
+      <section style={{ maxWidth: 900, margin: "0 auto", padding: "3rem 1.5rem 4rem", textAlign: "center" }}>
+        <Image src="/icon.png" alt="" width={72} height={72} style={{ marginBottom: "1.5rem", filter: "drop-shadow(0 0 24px rgba(250,204,21,0.35))" }} />
         <div style={{ display: "inline-block", background: "#1e293b", border: "1px solid #334155", borderRadius: 20, padding: "0.3rem 1rem", fontSize: "0.85rem", color: "#94a3b8", marginBottom: "1.5rem" }}>
           🛢 Especializado no concurso Petrobras Nível Técnico Júnior
         </div>

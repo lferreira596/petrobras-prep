@@ -5,10 +5,15 @@ export const metadata: Metadata = {
   title: "Petrobras Prep — Estude com questões reais",
   description: "Plataforma de estudos para o concurso Petrobras. 60+ questões Cesgranrio e CEBRASPE nível técnico com revisão inteligente.",
   keywords: ["Petrobras", "concurso", "Cesgranrio", "questões", "técnico júnior"],
+  icons: {
+    icon: "/icon.png",
+    apple: "/icon.png",
+  },
   openGraph: {
     title: "Petrobras Prep",
     description: "Estude com questões reais da Cesgranrio e CEBRASPE",
     type: "website",
+    images: [{ url: "/icon.png" }],
   },
 };
 
