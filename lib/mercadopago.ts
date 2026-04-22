@@ -10,10 +10,16 @@ export async function createSubscription(payerEmail: string, userId: string) {
   const preApproval = new PreApproval(mp);
   return preApproval.create({
     body: {
-      preapproval_plan_id : PLAN_ID,
-      payer_email         : payerEmail,
-      external_reference  : userId,
-      back_url            : `${process.env.NEXTAUTH_URL}/upgrade/sucesso`,
+      reason             : "Petrobras Prep Premium",
+      payer_email        : payerEmail,
+      external_reference : userId,
+      back_url           : `${process.env.NEXTAUTH_URL}/upgrade/sucesso`,
+      auto_recurring     : {
+        frequency          : 1,
+        frequency_type     : "months",
+        transaction_amount : 9.90,
+        currency_id        : "BRL",
+      },
     },
   });
 }
