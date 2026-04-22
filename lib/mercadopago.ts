@@ -1,38 +1,36 @@
-import { MercadoPagoConfig, PreApproval, PreApprovalPlan } from "mercadopago";
+import { MercadoPagoConfig, Preference, Payment } from "mercadopago";
 
-export const mp = new MercadoPagoConfig({
-  accessToken: process.env.MP_ACCESS_TOKEN!,
-});
+function getMp() {
+  return new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN! });
+}
 
-export const PLAN_ID = process.env.MP_PLAN_ID!; // ID do plano de assinatura criado no MP
+export const PRECO = 9.90;
 
-export async function createSubscription(payerEmail: string, userId: string) {
-  const preApproval = new PreApproval(mp);
-  return preApproval.create({
+export async function createCheckout(payerEmail: string, userId: string) {
+  const preference = new Preference(getMp());
+  return preference.create({
     body: {
-      reason             : "Petrobras Prep Premium",
-      payer_email        : payerEmail,
-      external_reference : userId,
-      back_url           : `${process.env.NEXTAUTH_URL}/upgrade/sucesso`,
-      auto_recurring     : {
-        frequency          : 1,
-        frequency_type     : "months",
-        transaction_amount : 9.90,
-        currency_id        : "BRL",
+      items: [{
+        id          : "premium-30d",
+        title       : "Petrobras Prep Premium — 30 dias",
+        unit_price  : PRECO,
+        quantity    : 1,
+        currency_id : "BRL",
+      }],
+      payer            : { email: payerEmail },
+      external_reference: userId,
+      back_urls        : {
+        success : `${process.env.NEXTAUTH_URL}/upgrade/sucesso`,
+        failure : `${process.env.NEXTAUTH_URL}/upgrade`,
+        pending : `${process.env.NEXTAUTH_URL}/upgrade/sucesso`,
       },
+      auto_return      : "approved",
+      statement_descriptor: "PETROBRAS PREP",
     },
   });
 }
 
-export async function getSubscription(subscriptionId: string) {
-  const preApproval = new PreApproval(mp);
-  return preApproval.get({ id: subscriptionId });
-}
-
-export async function cancelSubscription(subscriptionId: string) {
-  const preApproval = new PreApproval(mp);
-  return preApproval.update({
-    id  : subscriptionId,
-    body: { status: "cancelled" },
-  });
+export async function getPayment(paymentId: string) {
+  const payment = new Payment(getMp());
+  return payment.get({ id: paymentId });
 }

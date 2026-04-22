@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { createSubscription } from "@/lib/mercadopago";
+import { createCheckout } from "@/lib/mercadopago";
 
 export async function POST() {
   const session = await auth();
@@ -11,14 +11,14 @@ export async function POST() {
   }
 
   try {
-    const sub = await createSubscription(session.user.email!, session.user.id);
-    const data = sub as any;
-    // em modo teste o MP retorna sandbox_init_point; em produção retorna init_point
+    const pref = await createCheckout(session.user.email!, session.user.id);
+    const data = pref as any;
+    // modo teste: sandbox_init_point | produção: init_point
     const url = data.init_point ?? data.sandbox_init_point;
     if (!url) return NextResponse.json({ error: "URL de pagamento não retornada pelo MP", debug: data }, { status: 500 });
     return NextResponse.json({ initPoint: url });
   } catch (err: any) {
     console.error("[checkout]", err);
-    return NextResponse.json({ error: err?.message ?? "Erro ao criar assinatura" }, { status: 500 });
+    return NextResponse.json({ error: err?.message ?? "Erro ao criar checkout" }, { status: 500 });
   }
 }
