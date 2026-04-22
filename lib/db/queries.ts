@@ -5,27 +5,37 @@ import {
 } from "./schema";
 import { and, eq, lte, desc, sql, count, avg, inArray } from "drizzle-orm";
 
+const FREE_QUESTION_LIMIT = 20;
+
 // ── Questions ─────────────────────────────────────────────────
 export async function getQuestions(filters: {
-  area?  : string;
-  banca? : string;
-  dif?   : string;
-  tipo?  : string;
-  enfase?: string;
-  limit? : number;
+  area?    : string;
+  banca?   : string;
+  dif?     : string;
+  tipo?    : string;
+  enfase?  : string;
+  limit?   : number;
+  userPlan?: "free" | "premium";
 }) {
+  const isFree = !filters.userPlan || filters.userPlan === "free";
+
   const conditions = [eq(questions.ativa, true)];
+  if (isFree) conditions.push(eq(questions.isPremium, false));
   if (filters.area  && filters.area  !== "todas") conditions.push(eq(questions.area,  filters.area  as any));
   if (filters.banca && filters.banca !== "Todas as Bancas") conditions.push(eq(questions.banca, filters.banca as any));
   if (filters.dif   && filters.dif   !== "Todas") conditions.push(eq(questions.dif,   filters.dif   as any));
   if (filters.tipo  && filters.tipo  !== "misto") conditions.push(eq(questions.tipo,  filters.tipo  as any));
   if (filters.enfase) conditions.push(eq(questions.enfase, filters.enfase));
 
+  const effectiveLimit = isFree
+    ? Math.min(filters.limit ?? FREE_QUESTION_LIMIT, FREE_QUESTION_LIMIT)
+    : (filters.limit ?? 200);
+
   return db
     .select()
     .from(questions)
     .where(and(...conditions))
-    .limit(filters.limit ?? 200);
+    .limit(effectiveLimit);
 }
 
 export async function getQuestionsByIds(ids: string[]) {

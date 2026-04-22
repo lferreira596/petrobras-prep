@@ -265,6 +265,348 @@ const QUESTOES = [
     enunciado:"Equação patrimonial fundamental:",
     opcoes:["Ativo = Passivo × PL","Ativo + Passivo = PL","Ativo = Passivo + Patrimônio Líquido","Passivo = Ativo + PL","PL = Ativo × Passivo"],
     correta:2, explicacao:"ATIVO = PASSIVO + PATRIMÔNIO LÍQUIDO. Equação base da contabilidade." },
+
+  // ════════════════════════════════════════════════════════════════
+  // BLOCO 2 — NOVAS QUESTÕES (tópicos cobrados Cesgranrio/Petrobras)
+  // ════════════════════════════════════════════════════════════════
+
+  // ── LÍNGUA PORTUGUESA ──
+  { id:"p12", area:"port", sub:"Figuras de Linguagem", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Identifique a figura de linguagem presente em: 'A plataforma trabalhava incansavelmente, como se fosse um ser vivo.'",
+    opcoes:["Hipérbole","Antítese","Comparação (símile)","Metonímia","Eufemismo"],
+    correta:2, explicacao:"Comparação (símile): semelhança explícita marcada pelo 'como se'. Diferencia-se da metáfora, que omite o termo comparativo." },
+
+  { id:"p13", area:"port", sub:"Coesão Textual", banca:"CESGRANRIO", ano:2022, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Assinale o conectivo que estabelece relação de CONCESSÃO entre orações:",
+    opcoes:["Porque","Portanto","Embora","Assim","Além disso"],
+    correta:2, explicacao:"'Embora' é conjunção concessiva: introduz fato que contraria o esperado, mas não impede o que a oração principal afirma." },
+
+  { id:"p14", area:"port", sub:"Tipologia Textual", banca:"CESGRANRIO", ano:2022, dif:"facil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Um relatório técnico que expõe dados coletados, analisa resultados e defende recomendações enquadra-se na tipologia:",
+    opcoes:["Narrativa","Descritiva pura","Dissertativa (expositiva ou argumentativa)","Lírica","Dramática"],
+    correta:2, explicacao:"Relatórios técnicos são dissertativos: expõem informações (expositivo) e defendem conclusões com argumentos." },
+
+  { id:"p15", area:"port", sub:"Denotação e Conotação", banca:"CESGRANRIO", ano:2018, dif:"facil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Em 'As negociações estavam em águas turvas', a expressão destacada é empregada em sentido:",
+    opcoes:["Denotativo — significado literal e objetivo","Conotativo — sentido figurado","Técnico — jargão da área jurídica","Arcaico — sentido obsoleto","Regional — uso dialetal"],
+    correta:1, explicacao:"Conotativo: 'águas turvas' = situação obscura/difícil. Sentido figurado, afastado do significado literal de água fisicamente suja." },
+
+  { id:"p16", area:"port", sub:"Classes Gramaticais", banca:"CESGRANRIO", ano:2022, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Em 'Os operadores realizaram o procedimento CUIDADOSAMENTE', a palavra em destaque classifica-se como:",
+    opcoes:["Adjetivo","Advérbio de modo","Advérbio de tempo","Substantivo abstrato","Locução adverbial"],
+    correta:1, explicacao:"Advérbio de modo: modifica o verbo 'realizaram', responde 'como?'. Formado por adjetivo ('cuidadoso') + sufixo '-mente'." },
+
+  { id:"p17", area:"port", sub:"Paralelismo Sintático", banca:"CESGRANRIO", ano:2018, dif:"dificil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Assinale a alternativa com paralelismo sintático CORRETO entre os termos coordenados:",
+    opcoes:["Os técnicos devem: estudar, trabalhando e para inovar.","É importante planejar, de executar e o controle.","O técnico deve estudar, trabalhar e inovar continuamente.","Os gestores precisam planejar, a execução e controlar.","É preciso o planejamento, executar e que se controle."],
+    correta:2, explicacao:"'Estudar, trabalhar e inovar' — três verbos no infinitivo, mesma forma gramatical. As demais alternam formas distintas, quebrando o paralelismo." },
+
+  { id:"p18", area:"port", sub:"Voz Verbal", banca:"CESGRANRIO", ano:2022, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Qual é a voz passiva analítica correta de: 'A equipe concluiu o relatório'?",
+    opcoes:["O relatório era concluído pela equipe.","O relatório foi concluído pela equipe.","O relatório concluiu-se pela equipe.","O relatório tinha concluído pela equipe.","O relatório esteve concluído pela equipe."],
+    correta:1, explicacao:"Passiva analítica: sujeito paciente + auxiliar 'ser' no tempo correspondente + particípio. 'Concluiu' (pretérito perfeito) → 'foi concluído'." },
+
+  { id:"p19", area:"port", sub:"Acentuação Gráfica", banca:"CESGRANRIO", ano:2018, dif:"facil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"De acordo com o Acordo Ortográfico vigente, assinale a alternativa com todas as palavras acentuadas corretamente:",
+    opcoes:["vôo, bônus, vêem, pôr (preposição)","voo, bônus, veem, pôr (verbo)","vôo, bonus, vêem, por (verbo)","voo, bônus, veem, por (preposição)","voo, bônus, vêem, pôr (verbo)"],
+    correta:1, explicacao:"Pelo Acordo de 2009: 'voo' perde o acento; 'bônus' mantém (não há outra forma); 'veem' perde o trema; 'pôr' (verbo) mantém para diferenciar da preposição 'por'." },
+
+  { id:"p20", area:"port", sub:"Formação de Palavras", banca:"CESGRANRIO", ano:2022, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"A palavra 'SUBAPROVEITAMENTO' é formada pelo processo de:",
+    opcoes:["Composição por justaposição","Derivação apenas sufixal","Derivação prefixal e sufixal","Derivação apenas prefixal","Onomatopeia"],
+    correta:2, explicacao:"'Sub-' (prefixo) + aproveit(ar) + '-mento' (sufixo) = derivação com prefixo E sufixo adicionados à base verbal." },
+
+  { id:"p21", area:"port", sub:"Predicação Verbal", banca:"CESGRANRIO", ano:2018, dif:"dificil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Assinale a alternativa em que o verbo é transitivo INDIRETO (exige complemento com preposição):",
+    opcoes:["A empresa contratou novos técnicos.","O gerente aprovou o relatório.","Os engenheiros necessitam de equipamentos adequados.","A Petrobras construiu refinarias modernas.","O técnico redigiu o laudo técnico."],
+    correta:2, explicacao:"'Necessitar' é VTI — exige complemento introduzido por 'de' (objeto indireto). Os demais verbos são VTD (sem preposição)." },
+
+  // ── MATEMÁTICA ──
+  { id:"m12", area:"mat", sub:"Progressão Geométrica", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Em uma PG, o 1º termo é 2 e a razão é 3. Qual é o 5º termo?",
+    opcoes:["54","81","162","243","486"],
+    correta:2, explicacao:"a₅ = a₁ × r⁴ = 2 × 3⁴ = 2 × 81 = 162." },
+
+  { id:"m13", area:"mat", sub:"Regra de Três Composta", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"8 operadores produzem 400 peças em 5 dias. Quantas peças produzirão 10 operadores em 6 dias?",
+    opcoes:["480","500","550","600","650"],
+    correta:3, explicacao:"400 × (10/8) × (6/5) = 400 × 1,25 × 1,2 = 600 peças. Diretamente proporcional a operadores e dias." },
+
+  { id:"m14", area:"mat", sub:"Função do 1º Grau", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Uma empresa tem custo fixo de R$ 2.000 e custo variável de R$ 15 por unidade. Custo total para 300 unidades:",
+    opcoes:["R$ 4.500,00","R$ 5.500,00","R$ 6.000,00","R$ 6.500,00","R$ 7.000,00"],
+    correta:3, explicacao:"C(x) = 2.000 + 15x. C(300) = 2.000 + 15×300 = 2.000 + 4.500 = R$ 6.500,00." },
+
+  { id:"m15", area:"mat", sub:"MMC e MDC", banca:"CESGRANRIO", ano:2014, dif:"facil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"O MMC de 12, 18 e 24 é:",
+    opcoes:["36","48","72","96","144"],
+    correta:2, explicacao:"12=2²×3; 18=2×3²; 24=2³×3. MMC = 2³×3² = 8×9 = 72." },
+
+  { id:"m16", area:"mat", sub:"Descontos Sucessivos", banca:"CESGRANRIO", ano:2022, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Um equipamento custa R$ 10.000. Aplica-se desconto de 10% e, em seguida, mais 20%. Valor final pago:",
+    opcoes:["R$ 6.800,00","R$ 7.000,00","R$ 7.200,00","R$ 7.500,00","R$ 8.000,00"],
+    correta:2, explicacao:"10.000 × 0,9 = 9.000; 9.000 × 0,8 = R$ 7.200,00. Descontos sucessivos NÃO equivalem a 30% direto — incidem sobre bases diferentes." },
+
+  { id:"m17", area:"mat", sub:"Sistema de Equações", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Dois turnos de uma refinaria produzem juntos 2.300 barris/dia. O turno A produz 500 a mais que o B. Quantos barris o turno B produz?",
+    opcoes:["800","900","950","1.000","1.100"],
+    correta:1, explicacao:"A + B = 2.300 e A = B + 500 → (B+500)+B = 2.300 → 2B = 1.800 → B = 900 barris." },
+
+  { id:"m18", area:"mat", sub:"Raciocínio Lógico — Tabela Verdade", banca:"CESGRANRIO", ano:2018, dif:"dificil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"A proposição 'P OU Q' (disjunção inclusiva) é FALSA apenas quando:",
+    opcoes:["P é verdadeiro e Q é falso","P é falso e Q é verdadeiro","P e Q são ambos verdadeiros","P e Q são ambos falsos","P é verdadeiro independente de Q"],
+    correta:3, explicacao:"Disjunção (P∨Q): F∨F = F. Em todos os outros casos (V∨F, F∨V, V∨V) o resultado é verdadeiro." },
+
+  { id:"m19", area:"mat", sub:"Medidas de Tendência Central", banca:"CESGRANRIO", ano:2022, dif:"facil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Tempos de parada (em horas): 2, 3, 3, 5, 7, 8, 8, 8, 10. Qual é a MODA desse conjunto?",
+    opcoes:["3","5","7","8","10"],
+    correta:3, explicacao:"Moda = valor que aparece com maior frequência. O número 8 aparece 3 vezes — maior frequência do conjunto." },
+
+  // ── INFORMÁTICA ──
+  { id:"i10", area:"info", sub:"LGPD — Lei 13.709/2018", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Segundo a LGPD (Lei 13.709/2018), o titular dos dados pessoais tem o direito de:",
+    opcoes:["Acessar apenas dados de saúde registrados em órgãos públicos","Solicitar a eliminação de dados tratados de forma desnecessária ou excessiva","Proibir qualquer tratamento de seus dados por qualquer empresa","Receber indenização automática por qualquer uso de seus dados","Autorizar terceiros a tratar seus dados sem comunicar a empresa"],
+    correta:1, explicacao:"LGPD (art. 18): titular pode solicitar confirmação, acesso, correção, anonimização, portabilidade e eliminação de dados desnecessários ao tratamento." },
+
+  { id:"i11", area:"info", sub:"VPN", banca:"CESGRANRIO", ano:2022, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"VPN (Virtual Private Network) é utilizada principalmente para:",
+    opcoes:["Acelerar a conexão com a internet doméstica","Criar rede pública de acesso gratuito","Estabelecer conexão segura e criptografada sobre rede pública","Armazenar arquivos em nuvem de forma colaborativa","Gerenciar senhas de usuários corporativos"],
+    correta:2, explicacao:"VPN cria túnel criptografado sobre a internet pública, permitindo que o trabalhador remoto acesse a rede corporativa com segurança." },
+
+  { id:"i12", area:"info", sub:"Ransomware", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Qual tipo de malware CRIPTOGRAFA os arquivos da vítima e exige pagamento de resgate para liberá-los?",
+    opcoes:["Spyware","Adware","Ransomware","Keylogger","Rootkit"],
+    correta:2, explicacao:"Ransomware = sequestro digital. Criptografa arquivos e exige resgate financeiro. Ex: WannaCry (2017) afetou organizações globais." },
+
+  { id:"i13", area:"info", sub:"Word — Mala Direta", banca:"CESGRANRIO", ano:2018, dif:"facil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"No Microsoft Word, o recurso que permite enviar o mesmo documento personalizado automaticamente para múltiplos destinatários é:",
+    opcoes:["Controlar Alterações","Mala Direta","Macro","Índice Automático","Comentários"],
+    correta:1, explicacao:"Mala Direta (Mail Merge): combina um modelo de documento com uma lista de destinatários, gerando correspondências personalizadas em massa." },
+
+  { id:"i14", area:"info", sub:"Redes — IPv4", banca:"CESGRANRIO", ano:2022, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Um endereço IPv4 é composto por:",
+    opcoes:["32 bits, divididos em 4 grupos de 8 bits em notação decimal pontuada","64 bits, divididos em 8 grupos de 8 bits","128 bits em notação hexadecimal","16 bits em notação binária","48 bits em hexadecimal separado por dois-pontos"],
+    correta:0, explicacao:"IPv4 = 32 bits (4 octetos) em notação decimal separada por pontos (ex: 192.168.1.1). IPv6 usa 128 bits em hexadecimal." },
+
+  { id:"i15", area:"info", sub:"Backup — Tipos", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"O tipo de backup que copia APENAS os arquivos alterados desde o último backup COMPLETO é o:",
+    opcoes:["Backup completo (full)","Backup diferencial","Backup incremental","Backup espelhado","Backup sintético"],
+    correta:1, explicacao:"Diferencial: copia tudo alterado desde o último COMPLETO (acumula dia a dia). Incremental: copia desde o último backup de QUALQUER tipo." },
+
+  { id:"i16", area:"info", sub:"Excel — PROCV", banca:"CESGRANRIO", ano:2022, dif:"dificil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"A função PROCV (VLOOKUP) no Excel é utilizada para:",
+    opcoes:["Somar valores em coluna com critério (equivale ao SOMASE)","Contar células não vazias em um intervalo","Buscar um valor na 1ª coluna de uma tabela e retornar dado correspondente de outra coluna","Calcular a média aritmética de um intervalo","Contar quantas vezes um valor aparece em um intervalo"],
+    correta:2, explicacao:"PROCV: pesquisa vertical — localiza valor na 1ª coluna de uma tabela e retorna o conteúdo de outra coluna da mesma linha." },
+
+  { id:"i17", area:"info", sub:"Engenharia Social", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"certo_errado", enfase:"adm_controle",
+    enunciado:"A engenharia social explora vulnerabilidades técnicas dos sistemas operacionais para obter acesso não autorizado a informações.",
+    opcoes:["CERTO","ERRADO"],
+    correta:1, explicacao:"ERRADO. Engenharia social explora vulnerabilidades HUMANAS (manipulação psicológica e comportamental), não falhas técnicas de software." },
+
+  { id:"i18", area:"info", sub:"Windows — Atalhos de Sistema", banca:"CESGRANRIO", ano:2018, dif:"facil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Qual atalho do Windows abre o Gerenciador de Tarefas DIRETAMENTE, sem passar por tela intermediária?",
+    opcoes:["Ctrl+Alt+Delete","Ctrl+Shift+Esc","Ctrl+Alt+Esc","Windows+T","Alt+Tab"],
+    correta:1, explicacao:"Ctrl+Shift+Esc abre o Gerenciador de Tarefas diretamente. Ctrl+Alt+Del exibe um menu de opções antes de abri-lo." },
+
+  { id:"i19", area:"info", sub:"SaaS — Computação em Nuvem", banca:"CESGRANRIO", ano:2022, dif:"facil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"O modelo SaaS (Software as a Service) caracteriza-se por:",
+    opcoes:["O cliente gerenciar a infraestrutura física do data center","O cliente gerenciar o sistema operacional e o middleware","O software ser entregue via internet, sem instalação local pelo usuário","O cliente instalar o software em servidores próprios","O provedor fornecer apenas hardware virtualizado"],
+    correta:2, explicacao:"SaaS: software acessado via navegador — sem instalação local. Ex: Gmail, Microsoft 365, Salesforce. O provedor gerencia tudo (infra, SO, app)." },
+
+  // ── ADMINISTRAÇÃO ──
+  { id:"a11", area:"adm", sub:"Balanced Scorecard", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"O BSC (Balanced Scorecard), criado por Kaplan e Norton, organiza os objetivos estratégicos em quatro perspectivas. Assinale-as:",
+    opcoes:["Financeira, Clientes, Processos Internos e Aprendizado/Crescimento","Produção, Marketing, Finanças e RH","Planejamento, Execução, Controle e Melhoria","Qualidade, Custo, Prazo e Inovação","Estratégia, Tática, Operação e Controle"],
+    correta:0, explicacao:"BSC (Kaplan e Norton, 1992): 4 perspectivas — Financeira, Clientes, Processos Internos, Aprendizado e Crescimento. Vincula estratégia a indicadores mensuráveis." },
+
+  { id:"a12", area:"adm", sub:"Hierarquia de Maslow", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Na pirâmide de Maslow, a hierarquia de necessidades humanas, da base ao topo, é:",
+    opcoes:["Sociais, Fisiológicas, Segurança, Estima, Autorrealização","Fisiológicas, Segurança, Sociais, Estima, Autorrealização","Segurança, Fisiológicas, Estima, Sociais, Autorrealização","Autorrealização, Estima, Sociais, Segurança, Fisiológicas","Fisiológicas, Sociais, Segurança, Estima, Autorrealização"],
+    correta:1, explicacao:"Maslow (1943): 1-Fisiológicas (base), 2-Segurança, 3-Sociais/Afiliação, 4-Estima, 5-Autorrealização (topo). Necessidades inferiores devem ser satisfeitas antes." },
+
+  { id:"a13", area:"adm", sub:"Teoria de Herzberg", banca:"CESGRANRIO", ano:2022, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Segundo Herzberg, os fatores MOTIVACIONAIS (intrínsecos) são aqueles que:",
+    opcoes:["Quando ausentes causam insatisfação, mas presentes não motivam","São relativos ao ambiente: salário, supervisão, condições físicas","Quando presentes geram satisfação e motivam: reconhecimento, crescimento, realização","São externos ao indivíduo e controlados pela empresa","Equivalem às necessidades fisiológicas de Maslow"],
+    correta:2, explicacao:"Herzberg: fatores motivacionais (intrínsecos) — reconhecimento, responsabilidade, crescimento — sua presença gera MOTIVAÇÃO. Fatores higiênicos (extrínsecos): ausência gera insatisfação." },
+
+  { id:"a14", area:"adm", sub:"Just in Time", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"O sistema Just in Time (JIT), originado na Toyota, tem como principal objetivo:",
+    opcoes:["Maximizar estoques para garantir produção contínua","Produzir o necessário, na hora certa, eliminando desperdícios e estoques excessivos","Realizar grandes lotes de produção para reduzir custo unitário","Terceirizar toda a produção para fornecedores especializados","Automatizar completamente o processo produtivo com robótica"],
+    correta:1, explicacao:"JIT: produzir somente o necessário, no momento certo, na quantidade certa — eliminando estoques, superprodução e outros desperdícios (muda)." },
+
+  { id:"a15", area:"adm", sub:"Liderança Situacional", banca:"CESGRANRIO", ano:2022, dif:"dificil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"No modelo de Liderança Situacional de Hersey e Blanchard, o estilo de liderança deve ser ajustado conforme:",
+    opcoes:["O porte e o setor de atuação da empresa","O nível de maturidade (competência + comprometimento) do liderado para a tarefa","A personalidade do líder definida em testes psicológicos","O número de subordinados sob gestão direta","A política interna e cultura organizacional"],
+    correta:1, explicacao:"Liderança Situacional: o estilo (Dirigir, Treinar, Apoiar ou Delegar) deve ser adaptado ao nível de maturidade do liderado — não há estilo único ideal." },
+
+  { id:"a16", area:"adm", sub:"Cultura Organizacional", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Os três níveis de cultura organizacional — artefatos, valores compartilhados e pressupostos básicos — foram descritos por:",
+    opcoes:["Peter Drucker","Frederick Taylor","Edgar Schein","Michael Porter","Philip Kotler"],
+    correta:2, explicacao:"Edgar Schein (1985): 1-Artefatos (visíveis, superficiais), 2-Valores e crenças (semi-visíveis), 3-Pressupostos básicos (inconscientes, nucleares)." },
+
+  { id:"a17", area:"adm", sub:"Planejamento Estratégico", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"O planejamento ESTRATÉGICO diferencia-se do operacional principalmente porque:",
+    opcoes:["É realizado por supervisores de linha para tarefas do dia a dia","É de curto prazo e alta especificidade","É de longo prazo, envolve a alta direção e define a direção geral da organização","Trata apenas de orçamentos e recursos financeiros","Substitui o planejamento tático nas organizações modernas"],
+    correta:2, explicacao:"Planejamento Estratégico: alta cúpula, longo prazo, define missão/visão/objetivos macro. Tático = área/médio prazo. Operacional = tarefas/curto prazo." },
+
+  { id:"a18", area:"adm", sub:"Gestão por Processos — BPM", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"certo_errado", enfase:"adm_controle",
+    enunciado:"A gestão por processos (BPM — Business Process Management) foca na visão horizontal da organização, priorizando atividades integradas que geram valor para o cliente.",
+    opcoes:["CERTO","ERRADO"],
+    correta:0, explicacao:"CERTO. BPM: visão horizontal (fluxo de ponta a ponta), ao contrário da estrutura funcional vertical. Elimina silos departamentais e otimiza entrega de valor." },
+
+  { id:"a19", area:"adm", sub:"Administração por Objetivos", banca:"CESGRANRIO", ano:2014, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"A Administração por Objetivos (APO), desenvolvida por Peter Drucker, caracteriza-se por:",
+    opcoes:["Definição de objetivos exclusivamente pela alta gestão sem participação dos subordinados","Estabelecimento conjunto de metas entre gestor e subordinado, com avaliação pelos resultados","Eliminação de metas individuais em favor de metas coletivas exclusivamente","Foco apenas em processos, sem medir resultados finais","Substituição total do controle gerencial pelo autocontrole absoluto"],
+    correta:1, explicacao:"APO (MBO): gestor e subordinado definem metas JUNTOS — maior comprometimento. Avaliação é feita pelos resultados alcançados, estimulando o autocontrole." },
+
+  { id:"a20", area:"adm", sub:"ERP — Sistemas Integrados", banca:"CESGRANRIO", ano:2022, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"ERP (Enterprise Resource Planning) é um sistema que:",
+    opcoes:["Avalia o desempenho individual dos colaboradores","Controla exclusivamente o setor financeiro da empresa","Integra dados e processos de múltiplos departamentos em uma única plataforma","Gerencia projetos conforme metodologia ágil","Facilita a comunicação interna via mensagens instantâneas"],
+    correta:2, explicacao:"ERP integra finanças, RH, compras, produção, logística em um único banco de dados. Ex: SAP, Oracle, TOTVS. Amplamente usado na Petrobras." },
+
+  // ── LEGISLAÇÃO ──
+  { id:"l09", area:"leg", sub:"NR-20 — Inflamáveis", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"A Norma Regulamentadora NR-20 dispõe sobre segurança e saúde no trabalho com:",
+    opcoes:["Explosivos e detonadores em minas","Espaços confinados em indústrias","Inflamáveis e combustíveis líquidos e gasosos","Máquinas e equipamentos de grande porte","Instalações elétricas industriais"],
+    correta:2, explicacao:"NR-20: Segurança e Saúde no Trabalho com Inflamáveis e Combustíveis — fundamental para trabalhadores em refinarias, terminais e plataformas da Petrobras." },
+
+  { id:"l10", area:"leg", sub:"NR-33 — Espaços Confinados", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Conforme a NR-33, espaço confinado é aquele não destinado à ocupação humana contínua, com meios de entrada/saída limitados e que pode apresentar:",
+    opcoes:["Alta temperatura exclusivamente","Atmosfera com riscos potenciais (deficiência de O₂, gases tóxicos, inflamáveis)","Apenas riscos elétricos de alta tensão","Ruídos contínuos acima de 85 dB","Somente riscos ergonômicos de postura"],
+    correta:1, explicacao:"NR-33: três características do espaço confinado — não destinado à ocupação contínua, meios de acesso limitados e atmosfera potencialmente perigosa." },
+
+  { id:"l11", area:"leg", sub:"LGPD — Dados Sensíveis", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"certo_errado", enfase:"adm_controle",
+    enunciado:"Dados pessoais sensíveis, conforme a LGPD, incluem informações sobre origem racial, saúde, biometria e opinião política, sendo sujeitos a tratamento mais rigoroso.",
+    opcoes:["CERTO","ERRADO"],
+    correta:0, explicacao:"CERTO. Art. 5º, II da LGPD: dados sensíveis = raça/etnia, religião, saúde, biometria, genética, opinião política, orientação sexual. Exigem consentimento explícito e bases legais específicas." },
+
+  { id:"l12", area:"leg", sub:"Programa de Integridade", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Segundo o Decreto 8.420/2015 (regulamenta a Lei Anticorrupção), o elemento FUNDAMENTAL de um programa de integridade eficaz é:",
+    opcoes:["Canal de denúncias anônimas operado por terceiros","Comprometimento da alta direção e 'tone at the top'","Auditoria externa bianual aprovada pelo TCU","Aprovação formal do Ministério da Justiça","Treinamentos exclusivamente sobre conformidade fiscal"],
+    correta:1, explicacao:"Decreto 8.420/15: o comprometimento e suporte da alta direção ('tone at the top') é o pilar do programa de integridade. Sem ele, o programa é cosmético." },
+
+  { id:"l13", area:"leg", sub:"Royalties do Petróleo", banca:"CESGRANRIO", ano:2018, dif:"dificil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Os royalties do petróleo previstos na Lei 9.478/97 são pagos:",
+    opcoes:["Pelo governo federal às empresas produtoras como incentivo","Pelas empresas concessionárias à União pela extração do recurso natural","Apenas quando há lucro nas operações do bloco","Exclusivamente pela Petrobras ao Estado do Rio de Janeiro","Por importadores de petróleo ao governo federal"],
+    correta:1, explicacao:"Royalties: compensação financeira paga pelos concessionários (empresas) à União pela exploração de recurso natural pertencente à coletividade." },
+
+  { id:"l14", area:"leg", sub:"Estatuto Petrobras — Objeto Social", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"O objeto social da Petrobras S.A., conforme seu Estatuto, abrange:",
+    opcoes:["Exclusivamente a exploração e produção no pré-sal brasileiro","Pesquisa, lavra, refino, processamento, comércio e transporte de petróleo, gás e derivados","Apenas distribuição de combustíveis no varejo nacional","Geração de energia elétrica como atividade principal","Somente atividades executadas em território nacional"],
+    correta:1, explicacao:"Estatuto Petrobras: objeto amplo — E&P, refino, transporte, comércio, petroquímica, biocombustíveis, distribuição de gás, no Brasil e no exterior." },
+
+  { id:"l15", area:"leg", sub:"Lei 13.303/2016 — Governança", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"A Lei 13.303/2016 (Lei das Estatais) exige que empresas como a Petrobras tenham:",
+    opcoes:["100% do capital controlado pela União Federal","Comitê de Auditoria Estatutário e Conselho de Administração com percentual mínimo de independentes","Aprovação prévia do TCU para qualquer contrato acima de R$ 10 mil","Vedação total de dispensas de licitação","Diretoria composta exclusivamente por indicações político-partidárias"],
+    correta:1, explicacao:"Lei 13.303/16: Conselho de Administração com mínimo 25% de membros independentes, Comitê de Auditoria Estatutário (CAE) e critérios técnicos de indicação." },
+
+  { id:"l16", area:"leg", sub:"Lei 9.433/1997 — Recursos Hídricos", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"certo_errado", enfase:"adm_controle",
+    enunciado:"A Política Nacional de Recursos Hídricos (Lei 9.433/1997) estabelece que a água é bem de domínio público e recurso natural limitado, dotado de valor econômico.",
+    opcoes:["CERTO","ERRADO"],
+    correta:0, explicacao:"CERTO. Lei 9.433/97, art. 1º: água é bem de domínio PÚBLICO, limitado e com valor econômico — relevante para operações industriais da Petrobras que consomem e tratam água." },
+
+  // ── PETRÓLEO E GÁS ──
+  { id:"k09", area:"pet", sub:"Craqueamento Catalítico — FCC", banca:"CESGRANRIO", ano:2018, dif:"dificil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"O craqueamento catalítico fluidizado (FCC) nas refinarias tem como principal objetivo:",
+    opcoes:["Remover enxofre dos derivados (hidrotratamento)","Converter frações pesadas (gasóleo) em derivados leves como gasolina e GLP","Separar o petróleo bruto por pontos de ebulição","Tratar águas oleosas geradas na produção","Isomerizar naftas para aumentar octanagem"],
+    correta:1, explicacao:"FCC: quebra moléculas pesadas (C15+) em moléculas leves — gasolina e GLP são os principais produtos. É o principal processo de conversão das refinarias brasileiras." },
+
+  { id:"k10", area:"pet", sub:"BOP — Blowout Preventer", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"O BOP (Blowout Preventer) é equipamento instalado na cabeça do poço de petróleo para:",
+    opcoes:["Aumentar artificialmente a pressão do reservatório","Prevenir e controlar o surgimento de fluxo descontrolado (kick) que pode evoluir para blowout","Medir a produção diária do poço em barris","Perfurar rochas de alta dureza na formação geológica","Separar água, óleo e gás após a chegada à superfície"],
+    correta:1, explicacao:"BOP: conjunto de válvulas de alta pressão que fecha o poço ao detectar influxo de fluido (kick), evitando o blowout (erupção descontrolada)." },
+
+  { id:"k11", area:"pet", sub:"GLP — Composição", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"O GLP (Gás Liquefeito de Petróleo), comercializado como 'gás de cozinha', é composto principalmente por:",
+    opcoes:["Metano e etano","Propano e butano","Hexano e heptano","Etileno e propileno","Metano e hidrogênio"],
+    correta:1, explicacao:"GLP = mistura de propano (C₃H₈) e butano (C₄H₁₀). Permanece líquido sob pressão moderada, sendo armazenado e transportado em botijões." },
+
+  { id:"k12", area:"pet", sub:"Porosidade e Permeabilidade", banca:"CESGRANRIO", ano:2018, dif:"dificil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Na geologia de reservatórios, POROSIDADE é definida como:",
+    opcoes:["Capacidade de a rocha permitir o fluxo de fluidos","Relação entre o volume de poros e o volume total da rocha","Resistência da rocha à perfuração","Profundidade em que o reservatório está localizado","Pressão exercida pelos fluidos sobre as paredes dos poros"],
+    correta:1, explicacao:"Porosidade (φ) = Vporos / Vtotal × 100% — mede a capacidade de ARMAZENAR fluidos. Permeabilidade mede a capacidade de FLUIR. São propriedades distintas e essenciais do reservatório." },
+
+  { id:"k13", area:"pet", sub:"Nafta Petroquímica", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"A nafta, derivado do petróleo obtido no refino, é utilizada principalmente como:",
+    opcoes:["Combustível para aviação militar","Matéria-prima para a indústria petroquímica (produção de plásticos e polímeros)","Lubrificante industrial de alta viscosidade","Combustível marítimo pesado (bunker)","Aditivo anticongelante para motores"],
+    correta:1, explicacao:"Nafta petroquímica: alimenta crackers de vapor (steam crackers), que a convertem em etileno e propileno — base dos plásticos, borrachas sintéticas e fibras." },
+
+  { id:"k14", area:"pet", sub:"Biodiesel", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"O biodiesel é produzido principalmente por meio do processo de:",
+    opcoes:["Fermentação alcoólica da cana-de-açúcar","Gaseificação do carvão mineral","Transesterificação de óleos vegetais ou gorduras animais com álcool","Reforma a vapor do gás natural","Pirólise de resíduos de madeira (biomassa lignocelulósica)"],
+    correta:2, explicacao:"Biodiesel: transesterificação de óleos (soja, palma, canola) ou gordura animal com metanol ou etanol, produzindo ésteres graxos — substituto parcial do diesel fóssil." },
+
+  { id:"k15", area:"pet", sub:"UPGN — Processamento de Gás", banca:"CESGRANRIO", ano:2018, dif:"dificil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"A UPGN (Unidade de Processamento de Gás Natural) tem como função principal:",
+    opcoes:["Refinar o petróleo bruto em derivados leves como gasolina","Separar e recuperar os Líquidos de Gás Natural (LGN — GLP, nafta) do gás úmido","Gerar energia elétrica a partir da queima de gás natural","Comprimir o gás natural para transporte em gasodutos","Liquefazer o gás natural para transporte marítimo (GNL)"],
+    correta:1, explicacao:"UPGN processa o gás 'úmido' (rico em frações pesadas), recuperando LGN (GLP, C5+, nafta) e entregando gás seco (metano + etano) para as redes de distribuição." },
+
+  { id:"k16", area:"pet", sub:"Prospecção Sísmica", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"A prospecção sísmica é utilizada na fase de exploração de petróleo para:",
+    opcoes:["Extrair o petróleo do reservatório já descoberto","Transportar petróleo por dutos submarinos","Mapear as camadas geológicas do subsolo e identificar armadilhas de petróleo e gás","Processar o petróleo bruto em refinarias para obter derivados","Medir a temperatura e pressão dos reservatórios em produção"],
+    correta:2, explicacao:"Sísmica: ondas geradas na superfície penetram o subsolo e retornam ao ser refletidas. A análise dos reflexos revela estruturas geológicas e possíveis acumulações de hidrocarbonetos." },
+
+  // ── INGLÊS ──
+  { id:"e05", area:"ing", sub:"Reading Comprehension", banca:"CESGRANRIO", ano:2022, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Read: 'Petrobras has committed to reducing its carbon emissions by 25% by 2030, investing heavily in renewable energy alongside its core oil and gas operations.' The text states that Petrobras plans to:",
+    opcoes:["Abandon oil and gas operations by 2030","Reduce carbon emissions and invest in renewables while maintaining oil and gas business","Achieve carbon neutrality by 2025","Sell all renewable energy assets to competitors","Transfer all operations to renewable sources immediately"],
+    correta:1, explicacao:"'Alongside' = junto a, ao mesmo tempo. Petrobras reduzirá emissões E investirá em renováveis MANTENDO o negócio de petróleo e gás — não o abandonará." },
+
+  { id:"e06", area:"ing", sub:"Petroleum Vocabulary", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"In the oil and gas industry, 'crude oil' refers to:",
+    opcoes:["Refined petroleum products ready for market","Unrefined, naturally occurring petroleum extracted from the ground","Synthetic oil produced in a laboratory","Oil mixed with large amounts of water","Processed oil blended with chemical additives"],
+    correta:1, explicacao:"'Crude oil' = petróleo bruto, não refinado, como sai do reservatório. 'Crude' significa bruto/não processado." },
+
+  { id:"e07", area:"ing", sub:"Modal Verbs", banca:"CESGRANRIO", ano:2022, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"'All workers _______ wear safety helmets in the drilling area at all times.' Which modal best expresses OBLIGATION?",
+    opcoes:["might","could","must","would","should"],
+    correta:2, explicacao:"'Must' = obrigação forte/imposição (obrigação). 'Should' = recomendação/conselho. 'Might/Could' = possibilidade. 'Would' = condicional/hábito." },
+
+  { id:"e08", area:"ing", sub:"Connectors — Contrast", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"'Production costs increased significantly; _______, the company maintained its profit margins.' The connector that expresses CONTRAST is:",
+    opcoes:["therefore","furthermore","however","consequently","in addition"],
+    correta:2, explicacao:"'However' = contudo/porém — contraste/adversidade. 'Therefore/Consequently' = conclusão. 'Furthermore/In addition' = adição de informação." },
+
+  { id:"e09", area:"ing", sub:"Passive Voice", banca:"CESGRANRIO", ano:2022, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Which is the correct passive voice form of: 'Engineers designed the new offshore platform'?",
+    opcoes:["The new offshore platform was designed by engineers.","The new offshore platform has been designing by engineers.","The new offshore platform designed by engineers.","Engineers were designed the new offshore platform.","The new offshore platform is designed by engineers."],
+    correta:0, explicacao:"Passive voice: object + to be (past) + past participle + by + agent. 'Designed' (simple past) → 'was designed' (passive simple past)." },
+
+  { id:"e10", area:"ing", sub:"Midstream", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"In the oil and gas industry, 'midstream' activities include:",
+    opcoes:["Exploration and drilling of new oil wells","Transportation, storage and wholesale marketing of crude oil and natural gas","Retail sale of gasoline at service stations","Refining crude oil into petroleum products","Environmental impact assessment and licensing"],
+    correta:1, explicacao:"Midstream = transporte (dutos, navios), armazenamento e comercialização atacadista. Upstream = exploração e produção (E&P). Downstream = refino + distribuição + varejo." },
+
+  // ── CONTABILIDADE ──
+  { id:"c06", area:"con", sub:"Capital de Giro", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"O Capital de Giro Líquido (CGL) é calculado como:",
+    opcoes:["Ativo Total − Passivo Total","Ativo Circulante − Passivo Circulante","Ativo Permanente − Passivo Não Circulante","Patrimônio Líquido − Passivo Circulante","Ativo Circulante + Passivo Não Circulante"],
+    correta:1, explicacao:"CGL = Ativo Circulante − Passivo Circulante. CGL positivo indica que a empresa tem mais recursos de curto prazo do que obrigações imediatas — folga financeira." },
+
+  { id:"c07", area:"con", sub:"Custos Fixos e Variáveis", banca:"CESGRANRIO", ano:2018, dif:"facil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"O aluguel das instalações de uma refinaria é classificado como custo:",
+    opcoes:["Variável, pois depende do volume de petróleo processado","Fixo, pois não varia com o volume de produção","Semivariável, pois varia parcialmente com a produção","Direto, pois é alocado diretamente ao produto derivado","Relevante, pois muda conforme as decisões gerenciais"],
+    correta:1, explicacao:"Custo FIXO: permanece constante independentemente do volume produzido. Ex: aluguel, depreciação, salários fixos. Custo variável aumenta proporcionalmente à produção." },
+
+  { id:"c08", area:"con", sub:"Demonstração do Fluxo de Caixa", banca:"CESGRANRIO", ano:2022, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"A Demonstração dos Fluxos de Caixa (DFC), obrigatória pela Lei 11.638/07, divide-se nas atividades:",
+    opcoes:["Operacionais, de Investimento e de Financiamento","Receitas, Despesas e Resultado","Circulante, Não Circulante e Permanente","Venda, Produção e Administração","Curto Prazo, Médio Prazo e Longo Prazo"],
+    correta:0, explicacao:"DFC: Atividades Operacionais (core business), de Investimento (compra/venda de ativos de longo prazo) e de Financiamento (empréstimos, emissão de ações, dividendos)." },
+
+  { id:"c09", area:"con", sub:"Índice de Liquidez Corrente", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"O índice de Liquidez Corrente (LC) é calculado por:",
+    opcoes:["Ativo Total / Passivo Total","Ativo Circulante / Passivo Circulante","(Ativo Circulante − Estoques) / Passivo Circulante","Caixa e Equivalentes / Passivo Circulante","Patrimônio Líquido / Passivo Total"],
+    correta:1, explicacao:"Liquidez Corrente = Ativo Circulante / Passivo Circulante. LC > 1 indica que a empresa tem mais recursos de curto prazo que obrigações imediatas." },
+
+  { id:"c10", area:"con", sub:"Análise Vertical", banca:"CESGRANRIO", ano:2022, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"A análise VERTICAL do Balanço Patrimonial consiste em:",
+    opcoes:["Comparar valores entre dois ou mais períodos para verificar a evolução","Expressar cada conta como percentual de um total de referência (ex: Ativo Total = 100%)","Projetar resultados futuros com base em regressão histórica","Calcular índices de liquidez e rentabilidade relativos ao setor","Comparar o desempenho da empresa com concorrentes do mesmo setor"],
+    correta:1, explicacao:"Análise Vertical: cada conta é expressa como % do total do grupo (Ativo Total, Receita Líquida). Permite visualizar a composição estrutural e proporção dos elementos." },
+
+  { id:"c11", area:"con", sub:"Ponto de Equilíbrio", banca:"CESGRANRIO", ano:2022, dif:"dificil", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"Uma empresa tem custos fixos de R$ 30.000, preço de venda unitário de R$ 50 e custo variável unitário de R$ 20. O ponto de equilíbrio em unidades é:",
+    opcoes:["500","800","1.000","1.200","1.500"],
+    correta:2, explicacao:"PE = Custo Fixo / (Preço − Custo Variável) = 30.000 / (50 − 20) = 30.000 / 30 = 1.000 unidades. Acima disso há lucro; abaixo, prejuízo." },
 ] as const;
 
 async function main() {
