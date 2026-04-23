@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Petrobras Prep — Estude com questões reais",
+  title: "Concursos Prep — Estude com questões reais",
   description: "Plataforma de estudos para o concurso Petrobras. 130+ questões Cesgranrio e CEBRASPE nível técnico com revisão inteligente.",
   keywords: ["Petrobras", "concurso", "Cesgranrio", "questões", "técnico júnior"],
   icons: {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     apple: "/icon.png",
   },
   openGraph: {
-    title: "Petrobras Prep",
+    title: "Concursos Prep",
     description: "Estude com questões reais da Cesgranrio e CEBRASPE",
     type: "website",
     images: [{ url: "/icon.png" }],

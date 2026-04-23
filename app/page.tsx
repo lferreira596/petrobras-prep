@@ -18,7 +18,7 @@ export default async function RootPage() {
     <main style={{ minHeight: "100vh", background: "#0f172a", color: "#f8fafc", fontFamily: "sans-serif" }}>
       {/* Navbar */}
       <nav style={{ maxWidth: 900, margin: "0 auto", padding: "1.25rem 1.5rem", display: "flex", alignItems: "center", gap: 10 }}>
-        <Image src="/icon.png" alt="Petrobras Prep" width={36} height={36} style={{ borderRadius: 8 }} />
+        <Image src="/icon.png" alt="Concursos Prep" width={36} height={36} style={{ borderRadius: 8 }} />
         <span style={{ fontWeight: 800, fontSize: "1.05rem", letterSpacing: "-0.3px" }}>
           Petrobras <span style={{ color: "#facc15" }}>Prep</span>
         </span>
@@ -91,7 +91,7 @@ export default async function RootPage() {
           </svg>
           Dúvidas ou sugestões? Fale conosco
         </a>
-        <div>Petrobras Prep — Não afiliado à Petrobras S.A.</div>
+        <div>Concursos Prep — Não afiliado à Petrobras S.A.</div>
       </footer>
     </main>
   );
