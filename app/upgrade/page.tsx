@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const FEATURES_FREE = [
-  "60 questões de treino",
+  "20 questões de treino",
   "Repetição espaçada (SM-2)",
   "Dashboard de desempenho",
   "Plano de estudos semanal",
@@ -11,7 +11,7 @@ const FEATURES_FREE = [
 
 const FEATURES_PREMIUM = [
   "Tudo do plano gratuito",
-  "+200 questões exclusivas",
+  "Acesso a todas as 130+ questões",
   "Simulado cronometrado (100q / 4h)",
   "Analytics avançado com gráficos",
   "Heatmap de dias estudados",

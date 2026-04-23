@@ -58,7 +58,7 @@ export default async function DashboardPage() {
                     ★ Você está no plano Gratuito
                   </div>
                   <div style={{fontSize:11,color:"#94a3b8",lineHeight:1.6}}>
-                    Limitado a <strong style={{color:"#dde4ff"}}>60 questões</strong> · Sem simulado cronometrado · Sem analytics avançado
+                    Limitado a <strong style={{color:"#dde4ff"}}>20 questões</strong> · Sem simulado cronometrado · Sem analytics avançado
                   </div>
                 </div>
                 <div style={{flexShrink:0,background:"#facc15",color:"#0f172a",borderRadius:8,padding:"6px 14px",fontSize:12,fontWeight:700,whiteSpace:"nowrap"}}>

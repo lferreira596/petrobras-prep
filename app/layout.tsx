@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Petrobras Prep — Estude com questões reais",
-  description: "Plataforma de estudos para o concurso Petrobras. 60+ questões Cesgranrio e CEBRASPE nível técnico com revisão inteligente.",
+  description: "Plataforma de estudos para o concurso Petrobras. 130+ questões Cesgranrio e CEBRASPE nível técnico com revisão inteligente.",
   keywords: ["Petrobras", "concurso", "Cesgranrio", "questões", "técnico júnior"],
   icons: {
     icon: "/icon.png",

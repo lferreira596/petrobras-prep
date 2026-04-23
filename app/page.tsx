@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 const FEATURES = [
-  { icon: "📚", title: "60+ Questões Reais", desc: "Questões originais de CESGRANRIO e CEBRASPE, as bancas do concurso Petrobras." },
+  { icon: "📚", title: "130+ Questões Reais", desc: "Questões originais de CESGRANRIO e CEBRASPE, as bancas do concurso Petrobras." },
   { icon: "🧠", title: "Repetição Espaçada", desc: "Algoritmo SM-2 que identifica seus pontos fracos e programa revisões no momento certo." },
   { icon: "📊", title: "Dashboard Inteligente", desc: "Acompanhe seu desempenho por área e visualize sua evolução ao longo do tempo." },
   { icon: "⏱", title: "Simulado Cronometrado", desc: "100 questões em 4 horas, no formato exato do concurso. Exclusivo Premium." },

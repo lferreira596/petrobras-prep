@@ -25,7 +25,7 @@ export default async function LoginPage() {
           WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent",
         }}>Petrobras Prep</h1>
         <p style={{color:"#7a82a8", fontSize:13, margin:"0 0 32px"}}>
-          60+ questões reais · Cesgranrio &amp; CEBRASPE<br/>
+          130+ questões reais · Cesgranrio &amp; CEBRASPE<br/>
           Progresso salvo · Revisão inteligente
         </p>
 
