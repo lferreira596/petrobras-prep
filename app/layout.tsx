@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Concursos Prep — Estude com questões reais",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body style={{margin:0,padding:0,background:"#08080f"}}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
