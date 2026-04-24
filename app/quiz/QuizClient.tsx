@@ -23,11 +23,13 @@ const AREA_INFO:Record<string,{label:string;emoji:string;cor:string}> = {
 
 function shuffle<T>(arr:T[]): T[] { return [...arr].sort(()=>Math.random()-0.5); }
 
-export default function QuizClient({ questions, progressMap, userId }:
-  { questions:Question[]; progressMap:ProgressMap; userId:string }) {
+export default function QuizClient({ questions, progressMap, userId, userPlan }:
+  { questions:Question[]; progressMap:ProgressMap; userId:string; userPlan:"free"|"premium" }) {
 
+  const isFree = userPlan === "free";
   const router = useRouter();
   const [fila, setFila] = useState<Question[]>(questions);
+  const [rodada, setRodada] = useState(1); // controla quantas vezes o free já repetiu
 
   useEffect(()=>{ setFila(shuffle(questions)); }, []);
   const [idx, setIdx]         = useState(0);
@@ -87,18 +89,28 @@ export default function QuizClient({ questions, progressMap, userId }:
       setIdx(i=>i+1); setResp(null); setMostraExp(false);
     } else {
       // Salva sessão
-      const areas = Array.from(new Set(fila.map(q=>q.area)));
+      const acFinal  = placar.ac+(resp===q.correta?1:0);
+      const erFinal  = placar.er+(resp!==q.correta?1:0);
+      const areas    = Array.from(new Set(fila.map(q=>q.area)));
       await fetch("/api/sessions", {
         method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({
           modo:"quiz", total:fila.length,
-          acertos:placar.ac+(resp===q.correta?1:0),
-          erros: placar.er+(resp!==q.correta?1:0),
+          acertos: acFinal, erros: erFinal,
           duracaoSeg: Math.round((Date.now()-sessionStart)/1000),
           areas,
         }),
       });
-      router.push(`/dashboard?resultado=1&acertos=${placar.ac}&total=${fila.length}`);
+
+      if(isFree){
+        // Free: reinicia automaticamente com as mesmas questões embaralhadas
+        setFila(shuffle(questions));
+        setIdx(0); setResp(null); setMostraExp(false);
+        setPlacar({ac:0,er:0}); setStreak(0);
+        setRodada(r=>r+1);
+      } else {
+        router.push(`/dashboard?resultado=1&acertos=${acFinal}&total=${fila.length}`);
+      }
     }
   };
 
@@ -113,6 +125,20 @@ export default function QuizClient({ questions, progressMap, userId }:
           <span style={{flex:1,fontSize:14,fontWeight:700,color:C.verde,textAlign:"center"}}>Quiz</span>
           <span style={{fontSize:12,color:C.sub}}>✅{placar.ac} ❌{placar.er}</span>
         </div>
+
+        {/* Banner free */}
+        {isFree && (
+          <div style={{background:"rgba(250,204,21,0.07)",border:"1px solid rgba(250,204,21,0.2)",borderRadius:12,padding:"10px 14px",marginBottom:16,display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
+            <span style={{fontSize:12,color:"#facc15",flex:1}}>
+              🔒 Plano Gratuito — <strong>10 questões de demonstração</strong>
+              {rodada > 1 && <span style={{color:"#94a3b8"}}> · Rodada {rodada}</span>}
+              . Desbloqueie <strong>130+</strong> questões no Premium.
+            </span>
+            <a href="/upgrade" style={{background:"#facc15",color:"#0f172a",borderRadius:8,padding:"5px 12px",fontSize:11,fontWeight:800,textDecoration:"none",whiteSpace:"nowrap"}}>
+              Ver Premium →
+            </a>
+          </div>
+        )}
 
         {/* Progress bar */}
         <div style={{height:4,background:"rgba(255,255,255,0.07)",borderRadius:99,overflow:"hidden",marginBottom:10}}>

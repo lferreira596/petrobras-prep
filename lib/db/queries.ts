@@ -5,7 +5,20 @@ import {
 } from "./schema";
 import { and, eq, lte, desc, sql, count, avg, inArray } from "drizzle-orm";
 
-const FREE_QUESTION_LIMIT = 20;
+// 10 questões fixas do plano free — uma por área, cobrindo o essencial
+// Altere os IDs aqui para trocar quais questões aparecem para usuários gratuitos
+export const FREE_DEMO_IDS = [
+  "p01",  // Português   — Interpretação de Texto
+  "m01",  // Matemática  — Porcentagem
+  "i01",  // Informática — Phishing / Segurança
+  "a01",  // Administração — Funções PODC (Fayol)
+  "l01",  // Legislação  — Natureza Jurídica Petrobras
+  "k01",  // Petróleo    — Pré-Sal
+  "e01",  // Inglês      — Upstream/Downstream
+  "c01",  // Contabilidade — Ativo Circulante
+  "m06",  // Matemática  — Lógica Proposicional
+  "a04",  // Administração — Análise SWOT
+] as const;
 
 // ── Questions ─────────────────────────────────────────────────
 export async function getQuestions(filters: {
@@ -19,23 +32,30 @@ export async function getQuestions(filters: {
 }) {
   const isFree = !filters.userPlan || filters.userPlan === "free";
 
+  // Plano free: sempre retorna exatamente as 10 questões demo, ignorando filtros
+  if (isFree) {
+    return db
+      .select()
+      .from(questions)
+      .where(and(
+        eq(questions.ativa, true),
+        inArray(questions.id, FREE_DEMO_IDS as unknown as string[]),
+      ));
+  }
+
+  // Plano premium: filtros completos
   const conditions = [eq(questions.ativa, true)];
-  if (isFree) conditions.push(eq(questions.isPremium, false));
   if (filters.area  && filters.area  !== "todas") conditions.push(eq(questions.area,  filters.area  as any));
   if (filters.banca && filters.banca !== "Todas as Bancas") conditions.push(eq(questions.banca, filters.banca as any));
   if (filters.dif   && filters.dif   !== "Todas") conditions.push(eq(questions.dif,   filters.dif   as any));
   if (filters.tipo  && filters.tipo  !== "misto") conditions.push(eq(questions.tipo,  filters.tipo  as any));
   if (filters.enfase) conditions.push(eq(questions.enfase, filters.enfase));
 
-  const effectiveLimit = isFree
-    ? Math.min(filters.limit ?? FREE_QUESTION_LIMIT, FREE_QUESTION_LIMIT)
-    : (filters.limit ?? 200);
-
   return db
     .select()
     .from(questions)
     .where(and(...conditions))
-    .limit(effectiveLimit);
+    .limit(filters.limit ?? 200);
 }
 
 export async function getQuestionsByIds(ids: string[]) {
