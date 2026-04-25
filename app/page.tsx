@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const STATS = [
   { value: "10", label: "questões grátis" },
-  { value: "130+", label: "questões no Premium" },
+  { value: "500+", label: "questões estratégicas" },
   { value: "SM-2", label: "revisão inteligente" },
 ];
 
@@ -47,7 +47,7 @@ export default async function RootPage() {
               Quem treina, passa.
             </h1>
             <p style={{ color: "#d4d4d4", fontSize: "clamp(1.05rem, 2.4vw, 1.35rem)", lineHeight: 1.55, maxWidth: 720, margin: "0 auto 28px" }}>
-              Teste agora 10 questões grátis, sem login. Depois desbloqueie o banco completo, revisão inteligente e simulado cronometrado.
+              Teste agora 10 questões grátis, sem login. Depois desbloqueie mais de 500 questões estratégicas, revisão inteligente e simulado cronometrado.
             </p>
 
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 34 }}>

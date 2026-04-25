@@ -1,7 +1,7 @@
 # 🛢️ Petrobras Prep
 
 Plataforma de estudos para o concurso **Petrobras Nível Técnico Júnior** (ênfase Administração e Controle).  
-60+ questões reais da **Cesgranrio** e **CEBRASPE**, com login, progresso salvo, revisão inteligente e emails automáticos.
+Teste com 10 questões grátis e plano Premium com mais de 500 questões estratégicas, progresso salvo, revisão inteligente e emails automáticos.
 
 ---
 
@@ -44,7 +44,7 @@ petrobras-prep/
 │   │   ├── index.ts         ← Conexão Drizzle + Neon
 │   │   ├── schema.ts        ← Todas as tabelas
 │   │   ├── queries.ts       ← Queries tipadas + SM-2
-│   │   └── seed.ts          ← 60 questões reais
+│   │   └── seed.ts          ← banco de questões
 ├── types/
 │   └── next-auth.d.ts       ← Augmentação de tipos
 ├── drizzle.config.ts
@@ -107,7 +107,7 @@ npm run db:seed
 Saída esperada:
 ```
 🌱 Iniciando seed das questões...
-✅ 60 questões inseridas com sucesso!
+✅ questões inseridas com sucesso!
 ```
 
 ### 7. Configurar Google OAuth
@@ -179,7 +179,7 @@ users                    → perfil, streak, plano (free/premium)
 accounts                 → OAuth providers (NextAuth)
 sessions                 → sessões autenticadas (NextAuth)
 verification_tokens      → magic links (NextAuth)
-questions                → 60 questões com metadados
+questions                → questões com metadados, 10 grátis e demais premium
 user_question_progress   → progresso por questão + SM-2
 study_sessions           → histórico de sessões de estudo
 study_plans              → plano semanal personalizado
@@ -217,7 +217,7 @@ EF inicial = 2.5 | EF mínimo = 1.3
 npm run dev          # Servidor local em localhost:3000
 npm run db:push      # Sincroniza schema com o banco
 npm run db:studio    # Interface visual do banco (Drizzle Studio)
-npm run db:seed      # Insere as 60 questões
+npm run db:seed      # Insere/atualiza o banco de questões
 npm run build        # Build de produção
 ```
 
@@ -227,6 +227,6 @@ npm run build        # Build de produção
 
 - [ ] Mais ênfases (Suprimentos, Operação)
 - [ ] Modo simulado cronometrado (100 questões / 4h)
-- [ ] Plano premium com questões exclusivas
+- [ ] Plano premium com mais de 500 questões estratégicas
 - [ ] Ranking entre usuários
 - [ ] App mobile (PWA)

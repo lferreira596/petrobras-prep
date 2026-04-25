@@ -11,7 +11,7 @@ const FEATURES_FREE = [
 
 const FEATURES_PREMIUM = [
   "Tudo do teste grátis",
-  "Acesso a todas as 130+ questões",
+  "Mais de 500 questões estratégicas",
   "Revisão inteligente com SM-2",
   "Dashboard de desempenho",
   "Simulado cronometrado (100q / 4h)",
@@ -56,7 +56,7 @@ export default function UpgradePage() {
             Escolha seu plano
           </h1>
           <p style={{ color: "#94a3b8", fontSize: "1.1rem", lineHeight: 1.55, maxWidth: 620, margin: "0 auto" }}>
-            Teste 10 questões sem login. Para continuar treinando com banco completo e revisão inteligente, desbloqueie o Premium por <strong style={{ color: "#facc15" }}>R$9,90/mês</strong>.
+            Teste 10 questões grátis sem login. Para continuar treinando com mais de 500 questões estratégicas, revisão inteligente e simulado, desbloqueie o Premium por <strong style={{ color: "#facc15" }}>R$9,90/mês</strong>.
           </p>
         </div>
 

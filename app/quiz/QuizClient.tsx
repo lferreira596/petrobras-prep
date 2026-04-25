@@ -90,7 +90,7 @@ export default function QuizClient({ questions, progressMap, userId, userPlan }:
             {pctFinal}% de acerto
           </h1>
           <p style={{color:C.sub,fontSize:18,lineHeight:1.6,maxWidth:560,margin:"0 auto 28px"}}>
-            Você respondeu {fila.length} questões de demonstração. O plano gratuito para por aqui; o treino completo, revisão inteligente e simulado ficam no Premium.
+            Você respondeu {fila.length} questões de demonstração. O plano gratuito para por aqui; mais de 500 questões estratégicas, revisão inteligente e simulado ficam no Premium.
           </p>
           <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:10,margin:"0 auto 28px",maxWidth:460}}>
             <div style={{border:`1px solid ${C.border}`,background:C.card,borderRadius:12,padding:14}}>
@@ -178,7 +178,7 @@ export default function QuizClient({ questions, progressMap, userId, userPlan }:
         {isDemo && (
           <div style={{background:"rgba(250,204,21,0.08)",border:"1px solid rgba(250,204,21,0.28)",borderRadius:12,padding:"10px 14px",marginBottom:16,display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
             <span style={{fontSize:12,color:C.amarelo,flex:1,fontWeight:800}}>
-              🔒 Grátis: 10 questões liberadas. Premium desbloqueia o banco completo, revisão SM-2 e simulado cronometrado.
+              🔒 Grátis: 10 questões liberadas. Premium desbloqueia mais de 500 questões estratégicas, revisão SM-2 e simulado cronometrado.
             </span>
             <a href="/upgrade" style={{background:C.amarelo,color:"#0a0a0a",borderRadius:8,padding:"6px 12px",fontSize:11,fontWeight:1000,textDecoration:"none",whiteSpace:"nowrap"}}>
               Ver Premium →
