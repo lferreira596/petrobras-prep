@@ -12,7 +12,7 @@ export async function createCheckout(payerEmail: string, userId: string) {
     body: {
       items: [{
         id          : "premium-30d",
-        title       : "Petrobras Prep Premium — 30 dias",
+        title       : "Prepara Concursos Premium — 30 dias",
         unit_price  : PRECO,
         quantity    : 1,
         currency_id : "BRL",
@@ -25,7 +25,7 @@ export async function createCheckout(payerEmail: string, userId: string) {
         pending : `${process.env.NEXTAUTH_URL}/upgrade/sucesso`,
       },
       auto_return      : "approved",
-      statement_descriptor: "PETROBRAS PREP",
+      statement_descriptor: "PREPARA CONC",
     },
   });
 }

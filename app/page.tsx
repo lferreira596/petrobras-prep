@@ -3,11 +3,17 @@ import { auth } from "@/lib/auth";
 import Link from "next/link";
 import Image from "next/image";
 
+const STATS = [
+  { value: "10", label: "questões grátis" },
+  { value: "130+", label: "questões no Premium" },
+  { value: "SM-2", label: "revisão inteligente" },
+];
+
 const FEATURES = [
-  { icon: "📚", title: "130+ Questões Reais", desc: "Questões originais de CESGRANRIO e CEBRASPE, as bancas do concurso Petrobras." },
-  { icon: "🧠", title: "Repetição Espaçada", desc: "Algoritmo SM-2 que identifica seus pontos fracos e programa revisões no momento certo." },
-  { icon: "📊", title: "Dashboard Inteligente", desc: "Acompanhe seu desempenho por área e visualize sua evolução ao longo do tempo." },
-  { icon: "⏱", title: "Simulado Cronometrado", desc: "100 questões em 4 horas, no formato exato do concurso. Exclusivo Premium." },
+  { icon: "🎯", title: "Treino direcionado", text: "Português, matemática, informática, legislação, petróleo e administração para nível técnico." },
+  { icon: "✅", title: "Correção imediata", text: "Responda, veja a alternativa certa e entenda o erro na hora." },
+  { icon: "📊", title: "Progresso salvo", text: "Com login, seus acertos, erros e revisões ficam organizados no dashboard." },
+  { icon: "⏱", title: "Simulado Premium", text: "Treino cronometrado no formato de prova para acelerar sua preparação." },
 ];
 
 export default async function RootPage() {
@@ -15,84 +21,105 @@ export default async function RootPage() {
   if (session?.user) redirect("/dashboard");
 
   return (
-    <main style={{ minHeight: "100vh", background: "#0f172a", color: "#f8fafc", fontFamily: "sans-serif" }}>
-      {/* Navbar */}
-      <nav style={{ maxWidth: 900, margin: "0 auto", padding: "1.25rem 1.5rem", display: "flex", alignItems: "center", gap: 10 }}>
-        <Image src="/icon.png" alt="Concursos Prep" width={36} height={36} style={{ borderRadius: 8 }} />
-        <span style={{ fontWeight: 800, fontSize: "1.05rem", letterSpacing: "-0.3px" }}>
-          Petrobras <span style={{ color: "#facc15" }}>Prep</span>
-        </span>
-      </nav>
+    <main style={{ minHeight: "100vh", background: "#0a0a0a", color: "#ffffff", fontFamily: "'Segoe UI', system-ui, sans-serif", overflow: "hidden" }}>
+      <section style={{
+        minHeight: "92vh",
+        display: "flex",
+        alignItems: "center",
+        position: "relative",
+        padding: "20px 16px 52px",
+        background: "radial-gradient(circle at 50% 18%, rgba(250,204,21,0.22), transparent 30%), radial-gradient(circle at 12% 45%, rgba(34,197,94,0.18), transparent 28%), linear-gradient(180deg,#101010 0%,#050505 100%)",
+      }}>
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.74))" }} />
+        <div style={{ maxWidth: 1040, width: "100%", margin: "0 auto", position: "relative", zIndex: 1 }}>
+          <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, marginBottom: 44 }}>
+            <Image src="/logo.png" alt="Prepara Concursos" width={260} height={90} priority style={{ width: "min(260px, 58vw)", height: "auto", objectFit: "contain" }} />
+            <Link href="/login" style={{ color: "#ffffff", textDecoration: "none", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 999, padding: "9px 14px", fontSize: 13, fontWeight: 800 }}>
+              Entrar
+            </Link>
+          </nav>
 
-      {/* Hero */}
-      <section style={{ maxWidth: 900, margin: "0 auto", padding: "3rem 1.5rem 4rem", textAlign: "center" }}>
-        <Image src="/icon.png" alt="" width={72} height={72} style={{ marginBottom: "1.5rem", filter: "drop-shadow(0 0 24px rgba(250,204,21,0.35))" }} />
-        <div style={{ display: "inline-block", background: "#1e293b", border: "1px solid #334155", borderRadius: 20, padding: "0.3rem 1rem", fontSize: "0.85rem", color: "#94a3b8", marginBottom: "1.5rem" }}>
-          🛢 Especializado no concurso Petrobras Nível Técnico Júnior
-        </div>
-        <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 800, lineHeight: 1.15, marginBottom: "1.25rem" }}>
-          Passe na Petrobras com{" "}
-          <span style={{ color: "#facc15" }}>método científico</span>
-        </h1>
-        <p style={{ color: "#94a3b8", fontSize: "1.15rem", maxWidth: 600, margin: "0 auto 2.5rem" }}>
-          A única plataforma com questões reais da CESGRANRIO/CEBRASPE, repetição espaçada SM-2 e simulados no formato exato do concurso.
-        </p>
-        <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-          <Link href="/login" style={{ background: "#facc15", color: "#0f172a", padding: "0.85rem 2rem", borderRadius: 10, fontWeight: 700, fontSize: "1.05rem", textDecoration: "none" }}>
-            Começar grátis
-          </Link>
-          <Link href="/upgrade" style={{ background: "#1e293b", color: "#f8fafc", padding: "0.85rem 2rem", borderRadius: 10, fontWeight: 600, fontSize: "1.05rem", textDecoration: "none", border: "1px solid #334155" }}>
-            Ver planos →
-          </Link>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section style={{ maxWidth: 900, margin: "0 auto", padding: "0 1.5rem 5rem" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "1.25rem" }}>
-          {FEATURES.map((f) => (
-            <div key={f.title} style={{ background: "#1e293b", borderRadius: 14, padding: "1.5rem", border: "1px solid #334155" }}>
-              <div style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>{f.icon}</div>
-              <h3 style={{ fontWeight: 700, marginBottom: "0.4rem" }}>{f.title}</h3>
-              <p style={{ color: "#94a3b8", fontSize: "0.9rem", lineHeight: 1.5 }}>{f.desc}</p>
+          <div style={{ textAlign: "center", maxWidth: 880, margin: "0 auto" }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "#facc15", border: "1px solid rgba(250,204,21,0.45)", background: "rgba(250,204,21,0.08)", borderRadius: 999, padding: "8px 14px", fontSize: 12, fontWeight: 1000, textTransform: "uppercase", marginBottom: 20 }}>
+              ⚠️ Concurso Petrobras nível técnico
             </div>
-          ))}
+            <h1 style={{ fontSize: "clamp(2.7rem, 9vw, 6.4rem)", lineHeight: 0.88, margin: "0 0 22px", fontWeight: 1000, letterSpacing: 0, textTransform: "uppercase" }}>
+              Quem treina, passa.
+            </h1>
+            <p style={{ color: "#d4d4d4", fontSize: "clamp(1.05rem, 2.4vw, 1.35rem)", lineHeight: 1.55, maxWidth: 720, margin: "0 auto 28px" }}>
+              Teste agora 10 questões grátis, sem login. Depois desbloqueie o banco completo, revisão inteligente e simulado cronometrado.
+            </p>
+
+            <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 34 }}>
+              <Link href="/quiz" style={{ background: "#facc15", color: "#0a0a0a", padding: "15px 24px", borderRadius: 12, fontWeight: 1000, fontSize: 15, textDecoration: "none", textTransform: "uppercase", boxShadow: "0 12px 36px rgba(250,204,21,0.28)" }}>
+                Testar grátis agora
+              </Link>
+              <Link href="/upgrade" style={{ background: "rgba(255,255,255,0.06)", color: "#ffffff", padding: "15px 22px", borderRadius: 12, fontWeight: 900, fontSize: 15, textDecoration: "none", border: "1px solid rgba(255,255,255,0.16)" }}>
+                Ver Premium →
+              </Link>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(140px,1fr))", gap: 10, maxWidth: 620, margin: "0 auto 26px" }}>
+              {STATS.map((item) => (
+                <div key={item.label} style={{ border: "1px solid rgba(255,255,255,0.11)", background: "rgba(255,255,255,0.045)", borderRadius: 12, padding: "13px 10px" }}>
+                  <strong style={{ display: "block", color: item.value === "10" ? "#22c55e" : "#facc15", fontSize: 25, lineHeight: 1 }}>{item.value}</strong>
+                  <span style={{ display: "block", color: "#a3a3a3", fontSize: 11, textTransform: "uppercase", fontWeight: 900, marginTop: 5 }}>{item.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div style={{ maxWidth: 720, margin: "0 auto", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 18, background: "rgba(5,5,5,0.72)", boxShadow: "0 28px 90px rgba(0,0,0,0.45)", overflow: "hidden" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 14px", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+              <span style={{ color: "#facc15", fontSize: 12, fontWeight: 1000, textTransform: "uppercase" }}>Questão demo</span>
+              <span style={{ color: "#94a3b8", fontSize: 12 }}>CESGRANRIO • Administração</span>
+            </div>
+            <div style={{ padding: "18px 16px" }}>
+              <p style={{ margin: "0 0 14px", color: "#ffffff", lineHeight: 1.6, fontSize: 15 }}>
+                Na função administrativa de controle, qual ação vem depois de comparar o resultado com o padrão esperado?
+              </p>
+              {["Ignorar desvios pequenos", "Aplicar ação corretiva", "Encerrar o planejamento"].map((op, i) => (
+                <div key={op} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 12px", marginTop: 8, borderRadius: 10, border: `1px solid ${i === 1 ? "rgba(34,197,94,0.45)" : "rgba(255,255,255,0.1)"}`, background: i === 1 ? "rgba(34,197,94,0.12)" : "rgba(255,255,255,0.035)", color: i === 1 ? "#86efac" : "#d4d4d4", fontSize: 13 }}>
+                  <span style={{ width: 24, height: 24, borderRadius: 7, background: i === 1 ? "#22c55e" : "rgba(255,255,255,0.08)", color: i === 1 ? "#0a0a0a" : "#94a3b8", display: "inline-flex", alignItems: "center", justifyContent: "center", fontWeight: 1000 }}>{i === 1 ? "✓" : String.fromCharCode(65+i)}</span>
+                  {op}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Pricing CTA */}
-      <section style={{ background: "#1e293b", borderTop: "1px solid #334155", padding: "4rem 1.5rem", textAlign: "center" }}>
-        <h2 style={{ fontSize: "2rem", fontWeight: 700, marginBottom: "0.75rem" }}>
-          Comece agora, pague depois
+      <section style={{ padding: "64px 16px", background: "#ffffff", color: "#0a0a0a" }}>
+        <div style={{ maxWidth: 1040, margin: "0 auto" }}>
+          <div style={{ maxWidth: 680, marginBottom: 26 }}>
+            <p style={{ margin: "0 0 8px", color: "#22c55e", fontWeight: 1000, textTransform: "uppercase", fontSize: 12 }}>Dor → Solução → Aprovação</p>
+            <h2 style={{ margin: 0, fontSize: "clamp(2rem,5vw,3.5rem)", lineHeight: 1, fontWeight: 1000, textTransform: "uppercase" }}>
+              Disciplina hoje, aprovação amanhã.
+            </h2>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 14 }}>
+            {FEATURES.map((f) => (
+              <article key={f.title} style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 18, background: "#fafafa" }}>
+                <div style={{ fontSize: 26, marginBottom: 10 }}>{f.icon}</div>
+                <h3 style={{ margin: "0 0 8px", fontSize: 17, fontWeight: 1000, textTransform: "uppercase" }}>{f.title}</h3>
+                <p style={{ margin: 0, color: "#4b5563", lineHeight: 1.55, fontSize: 14 }}>{f.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: "58px 16px", background: "#0a0a0a", color: "#ffffff", textAlign: "center", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+        <h2 style={{ margin: "0 auto 12px", maxWidth: 720, fontSize: "clamp(2rem,6vw,4rem)", lineHeight: 1, fontWeight: 1000, textTransform: "uppercase" }}>
+          Comece sem cadastro.
         </h2>
-        <p style={{ color: "#94a3b8", marginBottom: "2rem" }}>
-          Plano gratuito sem cartão. Upgrade para Premium por <strong style={{ color: "#facc15" }}>R$9,90/mês</strong> no lançamento.
+        <p style={{ color: "#a3a3a3", margin: "0 auto 24px", maxWidth: 560, fontSize: 17, lineHeight: 1.55 }}>
+          Faça o teste grátis agora. Se fizer sentido para sua rotina, desbloqueie o Premium por R$9,90/mês no lançamento.
         </p>
-        <Link href="/login" style={{ background: "#facc15", color: "#0f172a", padding: "0.85rem 2.5rem", borderRadius: 10, fontWeight: 700, fontSize: "1.05rem", textDecoration: "none" }}>
-          Criar conta gratuita
+        <Link href="/quiz" style={{ display: "inline-flex", background: "#facc15", color: "#0a0a0a", padding: "15px 26px", borderRadius: 12, fontWeight: 1000, textDecoration: "none", textTransform: "uppercase" }}>
+          Responder 10 questões
         </Link>
       </section>
-
-      <footer style={{ textAlign: "center", padding: "1.75rem 1.5rem", color: "#475569", fontSize: "0.8rem", borderTop: "1px solid #1e293b" }}>
-        <a
-          href="https://wa.me/5531998352644?text=Olá!%20Tenho%20uma%20dúvida%20ou%20sugestão%20sobre%20o%20Petrobras%20Prep."
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: "inline-flex", alignItems: "center", gap: 8,
-            background: "#25D366", color: "#fff",
-            padding: "0.55rem 1.25rem", borderRadius: 99,
-            fontWeight: 700, fontSize: "0.85rem", textDecoration: "none",
-            marginBottom: "1rem",
-          }}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-          Dúvidas ou sugestões? Fale conosco
-        </a>
-        <div>Concursos Prep — Não afiliado à Petrobras S.A.</div>
-      </footer>
     </main>
   );
 }

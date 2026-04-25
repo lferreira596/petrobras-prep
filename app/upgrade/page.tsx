@@ -3,18 +3,18 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const FEATURES_FREE = [
-  "20 questões de treino",
-  "Repetição espaçada (SM-2)",
-  "Dashboard de desempenho",
-  "Plano de estudos semanal",
+  "10 questões de demonstração",
+  "Sem login para testar",
+  "Correção imediata",
+  "Ideal para conhecer o método",
 ];
 
 const FEATURES_PREMIUM = [
-  "Tudo do plano gratuito",
+  "Tudo do teste grátis",
   "Acesso a todas as 130+ questões",
+  "Revisão inteligente com SM-2",
+  "Dashboard de desempenho",
   "Simulado cronometrado (100q / 4h)",
-  "Analytics avançado com gráficos",
-  "Heatmap de dias estudados",
   "Suporte prioritário",
 ];
 
@@ -28,6 +28,10 @@ export default function UpgradePage() {
     setErro(null);
     try {
       const res = await fetch("/api/checkout", { method: "POST" });
+      if (res.status === 401) {
+        window.location.href = "/login";
+        return;
+      }
       const data = await res.json();
       if (data.initPoint) {
         window.location.href = data.initPoint;
@@ -42,60 +46,61 @@ export default function UpgradePage() {
   }
 
   return (
-    <main style={{ minHeight: "100vh", background: "#0f172a", color: "#f8fafc", padding: "2rem 1rem" }}>
+    <main style={{ minHeight: "100vh", background: "radial-gradient(circle at 50% 0%,rgba(250,204,21,0.16),transparent 28%),#0a0a0a", color: "#f8fafc", padding: "2rem 1rem", fontFamily: "'Segoe UI',system-ui,sans-serif" }}>
       <div style={{ maxWidth: 900, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-          <h1 style={{ fontSize: "2.5rem", fontWeight: 700, marginBottom: "0.75rem" }}>
+          <p style={{ color: "#22c55e", fontSize: 12, fontWeight: 1000, textTransform: "uppercase", margin: "0 0 10px" }}>
+            Quem treina, passa
+          </p>
+          <h1 style={{ fontSize: "clamp(2.3rem,7vw,4rem)", lineHeight: 1, fontWeight: 1000, margin: "0 0 0.75rem", textTransform: "uppercase" }}>
             Escolha seu plano
           </h1>
-          <p style={{ color: "#94a3b8", fontSize: "1.1rem" }}>
-            Invista na sua aprovação. Lance <strong style={{ color: "#facc15" }}>R$9,90/mês</strong> — oferta dos primeiros 100 assinantes.
+          <p style={{ color: "#94a3b8", fontSize: "1.1rem", lineHeight: 1.55, maxWidth: 620, margin: "0 auto" }}>
+            Teste 10 questões sem login. Para continuar treinando com banco completo e revisão inteligente, desbloqueie o Premium por <strong style={{ color: "#facc15" }}>R$9,90/mês</strong>.
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
-          {/* Free */}
-          <div style={{ background: "#1e293b", borderRadius: 16, padding: "2rem", border: "1px solid #334155" }}>
-            <p style={{ color: "#64748b", fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: 1 }}>Gratuito</p>
-            <p style={{ fontSize: "2.5rem", fontWeight: 700, margin: "0.5rem 0" }}>R$0</p>
-            <p style={{ color: "#94a3b8", marginBottom: "1.5rem" }}>Para começar a estudar</p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: "1.5rem" }}>
+          <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 16, padding: "2rem", border: "1px solid rgba(255,255,255,0.1)" }}>
+            <p style={{ color: "#94a3b8", fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: 1, fontWeight: 900 }}>Gratuito</p>
+            <p style={{ fontSize: "2.8rem", fontWeight: 1000, margin: "0.5rem 0" }}>R$0</p>
+            <p style={{ color: "#94a3b8", marginBottom: "1.5rem" }}>Para testar antes de criar conta</p>
             <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.6rem" }}>
               {FEATURES_FREE.map((f) => (
                 <li key={f} style={{ display: "flex", gap: "0.5rem", color: "#cbd5e1" }}>
-                  <span style={{ color: "#22c55e" }}>✓</span> {f}
+                  <span style={{ color: "#22c55e", fontWeight: 1000 }}>✓</span> {f}
                 </li>
               ))}
             </ul>
             <button
-              onClick={() => router.push("/dashboard")}
-              style={{ marginTop: "2rem", width: "100%", padding: "0.75rem", borderRadius: 8, border: "1px solid #475569", background: "transparent", color: "#94a3b8", cursor: "pointer", fontSize: "1rem" }}
+              onClick={() => router.push("/quiz")}
+              style={{ marginTop: "2rem", width: "100%", padding: "0.85rem", borderRadius: 10, border: "1px solid rgba(255,255,255,0.18)", background: "transparent", color: "#ffffff", cursor: "pointer", fontSize: "1rem", fontWeight: 900 }}
             >
-              Continuar grátis
+              Testar grátis
             </button>
           </div>
 
-          {/* Premium */}
-          <div style={{ background: "#1e293b", borderRadius: 16, padding: "2rem", border: "2px solid #facc15", position: "relative" }}>
-            <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", background: "#facc15", color: "#0f172a", fontSize: "0.75rem", fontWeight: 700, padding: "0.2rem 0.8rem", borderRadius: 20 }}>
+          <div style={{ background: "rgba(255,255,255,0.055)", borderRadius: 16, padding: "2rem", border: "2px solid #facc15", position: "relative", boxShadow: "0 24px 70px rgba(250,204,21,0.15)" }}>
+            <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", background: "#facc15", color: "#0a0a0a", fontSize: "0.75rem", fontWeight: 1000, padding: "0.25rem 0.8rem", borderRadius: 20, whiteSpace: "nowrap" }}>
               OFERTA DE LANÇAMENTO
             </div>
-            <p style={{ color: "#facc15", fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: 1 }}>Premium</p>
+            <p style={{ color: "#facc15", fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: 1, fontWeight: 1000 }}>Premium</p>
             <div style={{ display: "flex", alignItems: "baseline", gap: "0.5rem", margin: "0.5rem 0" }}>
-              <p style={{ fontSize: "2.5rem", fontWeight: 700 }}>R$9,90</p>
+              <p style={{ fontSize: "2.8rem", fontWeight: 1000, margin: 0 }}>R$9,90</p>
               <span style={{ color: "#64748b", textDecoration: "line-through" }}>R$19,90</span>
             </div>
             <p style={{ color: "#94a3b8", marginBottom: "1.5rem" }}>por mês — cancele quando quiser</p>
             <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.6rem" }}>
               {FEATURES_PREMIUM.map((f) => (
                 <li key={f} style={{ display: "flex", gap: "0.5rem", color: "#cbd5e1" }}>
-                  <span style={{ color: "#facc15" }}>★</span> {f}
+                  <span style={{ color: "#facc15", fontWeight: 1000 }}>★</span> {f}
                 </li>
               ))}
             </ul>
             <button
               onClick={handleUpgrade}
               disabled={loading}
-              style={{ marginTop: "2rem", width: "100%", padding: "0.75rem", borderRadius: 8, border: "none", background: loading ? "#92400e" : "#facc15", color: "#0f172a", fontWeight: 700, cursor: loading ? "not-allowed" : "pointer", fontSize: "1rem" }}
+              style={{ marginTop: "2rem", width: "100%", padding: "0.9rem", borderRadius: 10, border: "none", background: loading ? "#92400e" : "#facc15", color: "#0a0a0a", fontWeight: 1000, cursor: loading ? "not-allowed" : "pointer", fontSize: "1rem", textTransform: "uppercase" }}
             >
               {loading ? "Redirecionando..." : "Assinar Premium"}
             </button>
@@ -104,7 +109,7 @@ export default function UpgradePage() {
                 ⚠ {erro}
               </p>
             )}
-            <p style={{ textAlign: "center", color: "#475569", fontSize: "0.75rem", marginTop: "0.5rem" }}>
+            <p style={{ textAlign: "center", color: "#64748b", fontSize: "0.75rem", marginTop: "0.5rem" }}>
               Pagamento seguro via MercadoPago
             </p>
           </div>

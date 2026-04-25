@@ -3,6 +3,8 @@ import type { NextRequest } from "next/server";
 
 const PREMIUM_ROUTES = ["/simulado"];
 const ADMIN_ROUTES   = ["/admin"];
+const PUBLIC_ROUTES = ["/", "/login", "/upgrade", "/quiz"];
+const PUBLIC_API_ROUTES = ["/api/questions"];
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -20,11 +22,15 @@ export function middleware(req: NextRequest) {
 
   const isLoginPage = pathname.startsWith("/login");
   const isApiRoute  = pathname.startsWith("/api");
+  const isPublicRoute = PUBLIC_ROUTES.some((route) =>
+    route === "/" ? pathname === "/" : pathname.startsWith(route)
+  );
+  const isPublicApiRoute = PUBLIC_API_ROUTES.some((route) => pathname.startsWith(route));
 
-  if (isApiRoute && !isLoggedIn)
+  if (isApiRoute && !isLoggedIn && !isPublicApiRoute)
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  if (!isLoggedIn && !isLoginPage)
+  if (!isLoggedIn && !isPublicRoute && !isPublicApiRoute)
     return NextResponse.redirect(new URL("/login", req.url));
 
   if (isLoggedIn && isLoginPage)

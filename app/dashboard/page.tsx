@@ -23,10 +23,7 @@ export default async function DashboardPage() {
       <div style={{maxWidth:720, margin:"0 auto"}}>
         {/* Header */}
         <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:8,paddingBottom:12}}>
-          <Image src="/icon.png" alt="Concursos Prep" width={28} height={28} style={{borderRadius:6,opacity:0.9}}/>
-          <span style={{fontWeight:800,fontSize:13,letterSpacing:"-0.2px",color:"#94a3b8"}}>
-            Petrobras <span style={{color:"#facc15"}}>Prep</span>
-          </span>
+          <Image src="/logo.png" alt="Prepara Concursos" width={170} height={60} priority style={{width:150,height:"auto",objectFit:"contain"}}/>
         </div>
         <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16,paddingBottom:16,borderBottom:"1px solid rgba(255,255,255,0.07)"}}>
           {session.user.image && (

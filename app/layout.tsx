@@ -2,17 +2,20 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 
+const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? process.env.AUTH_URL ?? process.env.NEXTAUTH_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: "Concursos Prep — Estude com questões reais",
-  description: "Plataforma de estudos para o concurso Petrobras. 130+ questões Cesgranrio e CEBRASPE nível técnico com revisão inteligente.",
+  metadataBase: new URL(appUrl),
+  title: "Prepara Concursos — Quem treina, passa",
+  description: "Teste 10 questões grátis sem login. Desbloqueie banco completo, revisão inteligente e simulado para o concurso Petrobras nível técnico.",
   keywords: ["Petrobras", "concurso", "Cesgranrio", "questões", "técnico júnior"],
   icons: {
     icon: "/icon.png",
     apple: "/icon.png",
   },
   openGraph: {
-    title: "Concursos Prep",
-    description: "Estude com questões reais da Cesgranrio e CEBRASPE",
+    title: "Prepara Concursos",
+    description: "Teste 10 questões grátis sem login e desbloqueie o treino completo para concursos.",
     type: "website",
     images: [{ url: "/icon.png" }],
   },

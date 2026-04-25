@@ -4,9 +4,7 @@ import { getQuestions, getUserPlan } from "@/lib/db/queries";
 
 export async function GET(req: NextRequest) {
   const session = await auth();
-  if (!session?.user?.id) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
-  const userPlan = await getUserPlan(session.user.id);
+  const userPlan = session?.user?.id ? await getUserPlan(session.user.id) : "free";
   const { searchParams } = new URL(req.url);
 
   const questions = await getQuestions({
