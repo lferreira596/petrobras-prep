@@ -71,16 +71,23 @@ export async function getUserProgress(userId: string) {
     .where(eq(userQuestionProgress.userId, userId));
 }
 
-export async function getReviewQueue(userId: string) {
+export async function getReviewQueue(userId: string, userPlan?: "free" | "premium") {
   const now = new Date();
+  const plan = userPlan ?? await getUserPlan(userId);
+  const conditions = [
+    eq(userQuestionProgress.userId, userId),
+    lte(userQuestionProgress.proximaRevisao, now),
+  ];
+
+  if (plan !== "premium") {
+    conditions.push(inArray(userQuestionProgress.questionId, FREE_DEMO_IDS as unknown as string[]));
+  }
+
   return db
     .select({ questionId: userQuestionProgress.questionId, erros: userQuestionProgress.erros,
               tentativas: userQuestionProgress.tentativas, proximaRevisao: userQuestionProgress.proximaRevisao })
     .from(userQuestionProgress)
-    .where(and(
-      eq(userQuestionProgress.userId, userId),
-      lte(userQuestionProgress.proximaRevisao, now),
-    ))
+    .where(and(...conditions))
     .orderBy(desc(userQuestionProgress.erros));
 }
 
