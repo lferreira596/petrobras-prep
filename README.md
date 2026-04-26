@@ -120,7 +120,7 @@ Saída esperada:
 6. URIs de redirecionamento autorizados:
    ```
    http://localhost:3000/api/auth/callback/google
-   https://seu-dominio.vercel.app/api/auth/callback/google
+   https://preperaconcursos.com.br/api/auth/callback/google
    ```
 7. Copie `Client ID` e `Client Secret`
 
@@ -129,7 +129,7 @@ Adicione no Vercel (Settings → Environment Variables):
 AUTH_GOOGLE_ID=xxx.apps.googleusercontent.com
 AUTH_GOOGLE_SECRET=GOCSPX-xxx
 AUTH_SECRET=<gere com: openssl rand -base64 32>
-AUTH_URL=https://seu-dominio.vercel.app
+AUTH_URL=https://preperaconcursos.com.br
 ```
 
 ### 8. Configurar proteção dos Cron Jobs
@@ -142,7 +142,7 @@ openssl rand -base64 32
 Adicione no Vercel:
 ```
 CRON_SECRET=<string-gerada>
-NEXT_PUBLIC_APP_URL=https://seu-dominio.vercel.app
+NEXT_PUBLIC_APP_URL=https://preperaconcursos.com.br
 ```
 
 ### 9. Deploy final
