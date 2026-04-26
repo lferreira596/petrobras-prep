@@ -40,8 +40,8 @@ const QUESTOES = [
     opcoes:["CERTO","ERRADO"], correta:1, explicacao:"ERRADO. 'Vultoso' = grande/volumoso. 'Ínfimo' é antônimo. A substituição inverteria o sentido." },
   { id:"p06", area:"port", sub:"Regência Verbal", banca:"CESGRANRIO", ano:2017, dif:"dificil", tipo:"multipla", enfase:"adm_controle",
     enunciado:"Assinale a alternativa em que a regência verbal está em conformidade com a norma culta:",
-    opcoes:["Os operadores assistiram o acidente da sala de controle.","A empresa visa ao cumprimento das metas de segurança.","O gerente prefere a proposta nova do que a antiga.","Todos os técnicos chegaram em São Paulo ontem.","A Petrobras informou os funcionários sobre as mudanças."],
-    correta:1, explicacao:"'Visar' (objetivar) é VTI e pede 'a': 'visa AO cumprimento'." },
+    opcoes:["Os operadores assistiram o acidente da sala de controle.","A empresa visa ao cumprimento das metas de segurança.","O gerente prefere a proposta nova do que a antiga.","Todos os técnicos chegaram em São Paulo ontem.","A Petrobras informou aos funcionários sobre as mudanças."],
+    correta:1, explicacao:"'Visar', no sentido de objetivar, é tradicionalmente transitivo indireto e pede a preposição 'a': 'visa ao cumprimento'. As demais alternativas apresentam regência inadequada na norma-padrão." },
   { id:"p07", area:"port", sub:"Interpretação", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"certo_errado", enfase:"adm_controle",
     enunciado:"Texto: 'A Petrobras opera em mais de 15 países. Apesar de ser majoritariamente estatal, suas ações são negociadas nas bolsas do Brasil e dos EUA.' — O texto apresenta a Petrobras como empresa exclusivamente privada.",
     opcoes:["CERTO","ERRADO"], correta:1, explicacao:"ERRADO. O texto diz 'majoritariamente estatal'. Ter ações em bolsa não a torna exclusivamente privada." },
@@ -136,10 +136,10 @@ const QUESTOES = [
     correta:2, explicacao:"M = 10.000×1,331 = R$ 13.310,00." },
   { id:"m10", area:"mat", sub:"Estatística", banca:"CESGRANRIO", ano:2014, dif:"facil", tipo:"multipla", enfase:"adm_controle",
     enunciado:"Tempos de resposta: 3,5,5,7,10. Média:",
-    opcoes:["5","5,5","6","6,5","7"], correta:2, explicacao:"(3+5+5+7+10)/5 = 6." },
+    opcoes:["5","5,5","6","6,5","7"], correta:2, explicacao:"A média aritmética é a soma dos valores dividida pela quantidade de observações: (3+5+5+7+10)/5 = 30/5 = 6." },
   { id:"m11", area:"mat", sub:"Probabilidade", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
     enunciado:"100 válvulas, 5 defeituosas. Probabilidade de sortear uma defeituosa:",
-    opcoes:["1/10","1/15","1/20","1/25","1/50"], correta:2, explicacao:"5/100 = 1/20." },
+    opcoes:["1/10","1/15","1/20","1/25","1/50"], correta:2, explicacao:"A probabilidade é casos favoráveis sobre casos possíveis. Há 5 válvulas defeituosas em 100: 5/100 = 1/20 = 5%." },
   { id:"m22", area:"mat", sub:"Porcentagem", banca:"CESGRANRIO", ano:2024, dif:"media", tipo:"multipla", enfase:"adm_controle",
     enunciado:"Um equipamento custava R$ 12.000,00 e sofreu desconto de 8%. O preço final foi:",
     opcoes:["R$ 10.960,00","R$ 11.040,00","R$ 11.120,00","R$ 11.200,00","R$ 11.920,00"],
@@ -282,10 +282,10 @@ const QUESTOES = [
     enunciado:"Avaliação de desempenho 360 graus se caracteriza por:",
     opcoes:["Apenas resultados financeiros","Só pelo gestor","Feedback de chefes, pares, subordinados e autoavaliação","Só para liderança","Substituir o gestor"],
     correta:2, explicacao:"360° = múltiplos avaliadores: superior, pares, subordinados e autoavaliação." },
-  { id:"a07", area:"adm", sub:"PMBOK — Fases", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"multipla", enfase:"adm_controle",
-    enunciado:"Fases do ciclo de vida de projeto segundo o PMBOK:",
+  { id:"a07", area:"adm", sub:"PMBOK — Grupos de Processos", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"multipla", enfase:"adm_controle",
+    enunciado:"No PMBOK, os grupos de processos de gerenciamento de projetos são:",
     opcoes:["Planejamento, Execução, Controle, Encerramento e Avaliação","Iniciação, Planejamento, Execução, Monitoramento/Controle e Encerramento","Análise, Design, Desenvolvimento, Teste e Implantação","Proposta, Aprovação, Execução, Entrega e Auditoria","Escopo, Tempo, Custo, Qualidade e Risco"],
-    correta:1, explicacao:"PMBOK: Iniciação→Planejamento→Execução→Monitoramento e Controle→Encerramento." },
+    correta:1, explicacao:"A formulação correta é 'grupos de processos', não fases fixas do ciclo de vida: Iniciação, Planejamento, Execução, Monitoramento e Controle, e Encerramento." },
   { id:"a08", area:"adm", sub:"FIFO/PEPS", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
     enunciado:"FIFO (First In, First Out) significa:",
     opcoes:["Último que entrou sai primeiro","Aleatório","Primeiro que entrou sai primeiro","Os mais caros saem primeiro","Proporcional ao custo médio"],
@@ -310,9 +310,9 @@ const QUESTOES = [
     enunciado:"É vedado ao empregado receber presentes de fornecedores quando isso puder influenciar decisões comerciais.",
     opcoes:["CERTO","ERRADO"], correta:0, explicacao:"CERTO. Código de ética Petrobras proíbe recebimento que gere conflito de interesses." },
   { id:"l04", area:"leg", sub:"Lei 12.351/2010 — Pré-Sal", banca:"CEBRASPE", ano:2024, dif:"dificil", tipo:"multipla", enfase:"adm_controle",
-    enunciado:"No regime de partilha do pré-sal, a Petrobras:",
-    opcoes:["Não participa","É operadora obrigatória com participação mínima de 30%","Apenas fiscaliza","Divide lucros igualmente com o Estado","Pode vender participação livremente"],
-    correta:1, explicacao:"Lei 12.351/2010: Petrobras = operadora obrigatória, mínimo 30% em todos os blocos." },
+    enunciado:"Após a alteração promovida pela Lei 13.365/2016 no regime de partilha do pré-sal, a Petrobras:",
+    opcoes:["Não pode participar dos consórcios","Tem direito de preferência para atuar como operadora, conforme decisão do CNPE","Apenas fiscaliza os contratos de partilha","Divide automaticamente o excedente em óleo em partes iguais com a União","É sempre operadora obrigatória em todos os blocos"],
+    correta:1, explicacao:"A Lei 13.365/2016 alterou a Lei 12.351/2010: a Petrobras deixou de ser operadora obrigatória de todos os blocos e passou a ter direito de preferência para atuar como operadora, nos termos definidos pelo CNPE." },
   { id:"l05", area:"leg", sub:"Lei Anticorrupção 12.846/2013", banca:"CEBRASPE", ano:2024, dif:"dificil", tipo:"multipla", enfase:"adm_controle",
     enunciado:"Responsabilidade objetiva na Lei 12.846/2013 significa:",
     opcoes:["Só pune com culpa comprovada","Independe de dolo ou culpa — basta o ato prejudicial","Só pessoas físicas podem ser punidas","Aplica-se só a estrangeiras","Depende de condenação criminal prévia"],
@@ -442,7 +442,7 @@ const QUESTOES = [
   { id:"p19", area:"port", sub:"Acentuação Gráfica", banca:"CESGRANRIO", ano:2018, dif:"facil", tipo:"multipla", enfase:"adm_controle",
     enunciado:"De acordo com o Acordo Ortográfico vigente, assinale a alternativa com todas as palavras acentuadas corretamente:",
     opcoes:["vôo, bônus, vêem, pôr (preposição)","voo, bônus, veem, pôr (verbo)","vôo, bonus, vêem, por (verbo)","voo, bônus, veem, por (preposição)","voo, bônus, vêem, pôr (verbo)"],
-    correta:1, explicacao:"Pelo Acordo de 2009: 'voo' perde o acento; 'bônus' mantém (não há outra forma); 'veem' perde o trema; 'pôr' (verbo) mantém para diferenciar da preposição 'por'." },
+    correta:1, explicacao:"Pelo Acordo Ortográfico: 'voo' perde o acento diferencial antigo; 'bônus' mantém acento por ser paroxítona terminada em -us; 'veem' perde o acento circunflexo; 'pôr' (verbo) mantém acento para diferenciar da preposição 'por'." },
 
   { id:"p20", area:"port", sub:"Formação de Palavras", banca:"CESGRANRIO", ano:2022, dif:"media", tipo:"multipla", enfase:"adm_controle",
     enunciado:"A palavra 'SUBAPROVEITAMENTO' é formada pelo processo de:",
@@ -614,9 +614,9 @@ const QUESTOES = [
     correta:0, explicacao:"CERTO. Art. 5º, II da LGPD: dados sensíveis = raça/etnia, religião, saúde, biometria, genética, opinião política, orientação sexual. Exigem consentimento explícito e bases legais específicas." },
 
   { id:"l12", area:"leg", sub:"Programa de Integridade", banca:"CEBRASPE", ano:2024, dif:"media", tipo:"multipla", enfase:"adm_controle",
-    enunciado:"Segundo o Decreto 8.420/2015 (regulamenta a Lei Anticorrupção), o elemento FUNDAMENTAL de um programa de integridade eficaz é:",
+    enunciado:"Segundo o Decreto 11.129/2022, que regulamenta a Lei Anticorrupção, um parâmetro essencial de avaliação do programa de integridade é:",
     opcoes:["Canal de denúncias anônimas operado por terceiros","Comprometimento da alta direção e 'tone at the top'","Auditoria externa bianual aprovada pelo TCU","Aprovação formal do Ministério da Justiça","Treinamentos exclusivamente sobre conformidade fiscal"],
-    correta:1, explicacao:"Decreto 8.420/15: o comprometimento e suporte da alta direção ('tone at the top') é o pilar do programa de integridade. Sem ele, o programa é cosmético." },
+    correta:1, explicacao:"O Decreto 11.129/2022 prevê, entre os parâmetros de avaliação, o comprometimento da alta direção, incluídos os conselhos, com apoio visível e inequívoco ao programa e destinação de recursos adequados." },
 
   { id:"l13", area:"leg", sub:"Royalties do Petróleo", banca:"CESGRANRIO", ano:2018, dif:"dificil", tipo:"multipla", enfase:"adm_controle",
     enunciado:"Os royalties do petróleo previstos na Lei 9.478/97 são pagos:",
@@ -681,9 +681,9 @@ const QUESTOES = [
 
   // ── INGLÊS ──
   { id:"e05", area:"ing", sub:"Reading Comprehension", banca:"CESGRANRIO", ano:2022, dif:"media", tipo:"multipla", enfase:"adm_controle",
-    enunciado:"Read: 'Petrobras has committed to reducing its carbon emissions by 25% by 2030, investing heavily in renewable energy alongside its core oil and gas operations.' The text states that Petrobras plans to:",
+    enunciado:"Read: 'The company plans to reduce its carbon emissions, investing in renewable energy alongside its core oil and gas operations.' The text states that the company plans to:",
     opcoes:["Abandon oil and gas operations by 2030","Reduce carbon emissions and invest in renewables while maintaining oil and gas business","Achieve carbon neutrality by 2025","Sell all renewable energy assets to competitors","Transfer all operations to renewable sources immediately"],
-    correta:1, explicacao:"'Alongside' = junto a, ao mesmo tempo. Petrobras reduzirá emissões E investirá em renováveis MANTENDO o negócio de petróleo e gás — não o abandonará." },
+    correta:1, explicacao:"'Alongside' = junto a, ao mesmo tempo. O texto indica redução de emissões e investimento em renováveis enquanto a empresa mantém suas operações centrais de óleo e gás; não afirma abandono imediato desse negócio." },
 
   { id:"e06", area:"ing", sub:"Petroleum Vocabulary", banca:"CESGRANRIO", ano:2018, dif:"media", tipo:"multipla", enfase:"adm_controle",
     enunciado:"In the oil and gas industry, 'crude oil' refers to:",
@@ -753,7 +753,23 @@ async function main() {
         opcoes: q.opcoes as unknown as string[], correta: q.correta,
         explicacao: q.explicacao, enfase: q.enfase,
         isPremium: !FREE_DEMO_IDS.includes(q.id as typeof FREE_DEMO_IDS[number]),
-      }).onConflictDoNothing();
+      }).onConflictDoUpdate({
+        target: questions.id,
+        set: {
+          area: q.area as any,
+          sub: q.sub,
+          banca: q.banca as any,
+          ano: q.ano,
+          dif: q.dif as any,
+          tipo: q.tipo as any,
+          enunciado: q.enunciado,
+          opcoes: q.opcoes as unknown as string[],
+          correta: q.correta,
+          explicacao: q.explicacao,
+          enfase: q.enfase,
+          isPremium: !FREE_DEMO_IDS.includes(q.id as typeof FREE_DEMO_IDS[number]),
+        },
+      });
     }
     console.log(`✅ ${QUESTOES.length} questões inseridas com sucesso!`);
   } catch (err) {
