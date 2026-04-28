@@ -28,7 +28,7 @@ export default async function LoginPage() {
           style={{width:"min(260px,100%)",height:"auto",objectFit:"contain",marginBottom:16}}
         />
         <p style={{color:"#7a82a8", fontSize:13, margin:"0 0 32px"}}>
-          10 questões grátis · Premium com 500+ estratégicas<br/>
+          7 dias grátis com questões estratégicas<br/>
           Progresso salvo · Revisão inteligente
         </p>
 

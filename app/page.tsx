@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 const STATS = [
-  { value: "10", label: "questões grátis" },
+  { value: "7 dias", label: "acesso grátis" },
   { value: "500+", label: "questões estratégicas" },
   { value: "SM-2", label: "revisão inteligente" },
 ];
@@ -47,22 +47,19 @@ export default async function RootPage() {
               Quem treina, passa.
             </h1>
             <p style={{ color: "#d4d4d4", fontSize: "clamp(1.05rem, 2.4vw, 1.35rem)", lineHeight: 1.55, maxWidth: 720, margin: "0 auto 28px" }}>
-              Teste agora 10 questões grátis, sem login. Depois desbloqueie mais de 500 questões estratégicas, revisão inteligente e simulado cronometrado.
+              Crie sua conta e treine por 7 dias com questões estratégicas, revisão inteligente e simulado cronometrado antes de ver qualquer oferta Premium.
             </p>
 
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 34 }}>
-              <Link href="/quiz" style={{ background: "#facc15", color: "#0a0a0a", padding: "15px 24px", borderRadius: 12, fontWeight: 1000, fontSize: 15, textDecoration: "none", textTransform: "uppercase", boxShadow: "0 12px 36px rgba(250,204,21,0.28)" }}>
-                Testar grátis agora
-              </Link>
-              <Link href="/upgrade" style={{ background: "rgba(255,255,255,0.06)", color: "#ffffff", padding: "15px 22px", borderRadius: 12, fontWeight: 900, fontSize: 15, textDecoration: "none", border: "1px solid rgba(255,255,255,0.16)" }}>
-                Ver Premium →
+              <Link href="/login" style={{ background: "#facc15", color: "#0a0a0a", padding: "15px 24px", borderRadius: 12, fontWeight: 1000, fontSize: 15, textDecoration: "none", textTransform: "uppercase", boxShadow: "0 12px 36px rgba(250,204,21,0.28)" }}>
+                Começar 7 dias grátis
               </Link>
             </div>
 
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(140px,1fr))", gap: 10, maxWidth: 620, margin: "0 auto 26px" }}>
               {STATS.map((item) => (
                 <div key={item.label} style={{ border: "1px solid rgba(255,255,255,0.11)", background: "rgba(255,255,255,0.045)", borderRadius: 12, padding: "13px 10px" }}>
-                  <strong style={{ display: "block", color: item.value === "10" ? "#22c55e" : "#facc15", fontSize: 25, lineHeight: 1 }}>{item.value}</strong>
+                  <strong style={{ display: "block", color: item.value === "7 dias" ? "#22c55e" : "#facc15", fontSize: 25, lineHeight: 1 }}>{item.value}</strong>
                   <span style={{ display: "block", color: "#a3a3a3", fontSize: 11, textTransform: "uppercase", fontWeight: 900, marginTop: 5 }}>{item.label}</span>
                 </div>
               ))}
@@ -111,13 +108,13 @@ export default async function RootPage() {
 
       <section style={{ padding: "58px 16px", background: "#0a0a0a", color: "#ffffff", textAlign: "center", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
         <h2 style={{ margin: "0 auto 12px", maxWidth: 720, fontSize: "clamp(2rem,6vw,4rem)", lineHeight: 1, fontWeight: 1000, textTransform: "uppercase" }}>
-          Comece sem cadastro.
+          Comece seu acesso gratuito.
         </h2>
         <p style={{ color: "#a3a3a3", margin: "0 auto 24px", maxWidth: 560, fontSize: 17, lineHeight: 1.55 }}>
-          Faça o teste grátis agora. Se fizer sentido para sua rotina, desbloqueie o Premium por R$9,90/mês no lançamento.
+          Entre, treine de verdade por 7 dias e descubra se a rotina encaixa no seu estudo.
         </p>
-        <Link href="/quiz" style={{ display: "inline-flex", background: "#facc15", color: "#0a0a0a", padding: "15px 26px", borderRadius: 12, fontWeight: 1000, textDecoration: "none", textTransform: "uppercase" }}>
-          Responder 10 questões
+        <Link href="/login" style={{ display: "inline-flex", background: "#facc15", color: "#0a0a0a", padding: "15px 26px", borderRadius: 12, fontWeight: 1000, textDecoration: "none", textTransform: "uppercase" }}>
+          Começar agora
         </Link>
       </section>
     </main>

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { getUserPlan } from "@/lib/db/queries";
+import { getUserAccess } from "@/lib/db/queries";
 import { db } from "@/lib/db";
 import { questions } from "@/lib/db/schema";
 import { eq, and, sql } from "drizzle-orm";
@@ -15,8 +15,8 @@ export async function GET() {
   const session = await auth();
   if (!session?.user?.id) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const plan = await getUserPlan(session.user.id);
-  if (plan !== "premium") return NextResponse.json({ error: "Premium required" }, { status: 403 });
+  const access = await getUserAccess(session.user.id);
+  if (!access.isPremium && !access.isFreeAccessActive) return NextResponse.json({ error: "Premium required" }, { status: 403 });
 
   const result: any[] = [];
   for (const area of AREAS) {

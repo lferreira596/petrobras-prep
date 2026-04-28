@@ -5,6 +5,9 @@ import {
 } from "./schema";
 import { and, eq, lte, desc, sql, count, avg, inArray } from "drizzle-orm";
 
+export const FREE_ACCESS_DAYS = 7;
+const FREE_ACCESS_MS = FREE_ACCESS_DAYS * 24 * 60 * 60 * 1000;
+
 // 10 questões fixas do plano free — uma por área, cobrindo o essencial
 // Altere os IDs aqui para trocar quais questões aparecem para usuários gratuitos
 export const FREE_DEMO_IDS = [
@@ -29,19 +32,12 @@ export async function getQuestions(filters: {
   enfase?  : string;
   limit?   : number;
   userPlan?: "free" | "premium";
+  freeAccessActive?: boolean;
 }) {
-  const isFree = !filters.userPlan || filters.userPlan === "free";
+  const hasFullAccess = filters.userPlan === "premium" || filters.freeAccessActive === true;
 
-  // Plano free: sempre retorna exatamente as 10 questões demo, ignorando filtros
-  if (isFree) {
-    return db
-      .select()
-      .from(questions)
-      .where(and(
-        eq(questions.ativa, true),
-        inArray(questions.id, FREE_DEMO_IDS as unknown as string[]),
-      ));
-  }
+  // Depois dos 7 dias gratuitos, o free para de receber novas questoes.
+  if (!hasFullAccess) return [];
 
   // Plano premium: filtros completos
   const conditions = [eq(questions.ativa, true)];
@@ -73,13 +69,15 @@ export async function getUserProgress(userId: string) {
 
 export async function getReviewQueue(userId: string, userPlan?: "free" | "premium") {
   const now = new Date();
-  const plan = userPlan ?? await getUserPlan(userId);
+  const access = userPlan
+    ? { plan: userPlan, isFreeAccessActive: userPlan === "premium" }
+    : await getUserAccess(userId);
   const conditions = [
     eq(userQuestionProgress.userId, userId),
     lte(userQuestionProgress.proximaRevisao, now),
   ];
 
-  if (plan !== "premium") {
+  if (access.plan !== "premium" && !access.isFreeAccessActive) {
     conditions.push(inArray(userQuestionProgress.questionId, FREE_DEMO_IDS as unknown as string[]));
   }
 
@@ -291,6 +289,31 @@ export async function upsertSubscription(data: {
 export async function getUserPlan(userId: string): Promise<"free" | "premium"> {
   const rows = await db.select({ plan: users.plan }).from(users).where(eq(users.id, userId)).limit(1);
   return rows[0]?.plan ?? "free";
+}
+
+export async function getUserAccess(userId: string) {
+  const rows = await db
+    .select({ plan: users.plan, createdAt: users.createdAt })
+    .from(users)
+    .where(eq(users.id, userId))
+    .limit(1);
+
+  const user = rows[0];
+  const plan = user?.plan ?? "free";
+  const freeAccessEndsAt = new Date((user?.createdAt ?? new Date()).getTime() + FREE_ACCESS_MS);
+  const isFreeAccessActive = plan === "free" && Date.now() < freeAccessEndsAt.getTime();
+  const daysRemaining = isFreeAccessActive
+    ? Math.max(1, Math.ceil((freeAccessEndsAt.getTime() - Date.now()) / 86400000))
+    : 0;
+
+  return {
+    plan,
+    isPremium: plan === "premium",
+    isFreeAccessActive,
+    freeAccessEndsAt,
+    daysRemaining,
+    shouldShowUpgrade: plan !== "premium" && !isFreeAccessActive,
+  };
 }
 
 export async function getUserRole(userId: string): Promise<"user" | "admin"> {

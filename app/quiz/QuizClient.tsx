@@ -6,7 +6,13 @@ type Question = {
   dif:string; tipo:string; enunciado:string; opcoes:string[]; correta:number; explicacao:string;
 };
 type ProgressMap = Record<string, { erros:number; acertos:number; tentativas:number }>;
-type Plan = "guest" | "free" | "premium";
+type Access = {
+  plan: "free" | "premium";
+  isPremium: boolean;
+  isFreeAccessActive: boolean;
+  daysRemaining: number;
+  shouldShowUpgrade: boolean;
+};
 
 const DIF_COR:Record<string,string> = { facil:"#4ade80", media:"#facc15", dificil:"#f87171" };
 const DIF_LABEL:Record<string,string> = { facil:"Fácil", media:"Médio", dificil:"Difícil" };
@@ -23,11 +29,11 @@ const AREA_INFO:Record<string,{label:string;emoji:string;cor:string}> = {
 
 function shuffle<T>(arr:T[]): T[] { return [...arr].sort(()=>Math.random()-0.5); }
 
-export default function QuizClient({ questions, progressMap, userId, userPlan }:
-  { questions:Question[]; progressMap:ProgressMap; userId?:string; userPlan:Plan }) {
+export default function QuizClient({ questions, progressMap, userId, access }:
+  { questions:Question[]; progressMap:ProgressMap; userId:string; access:Access }) {
 
-  const isDemo = userPlan !== "premium";
-  const isGuest = userPlan === "guest";
+  const isPremium = access.isPremium;
+  const isTrial = access.isFreeAccessActive && !isPremium;
   const [fila, setFila] = useState<Question[]>(questions);
   const [idx, setIdx] = useState(0);
   const [resp, setResp] = useState<number|null>(null);
@@ -73,10 +79,26 @@ export default function QuizClient({ questions, progressMap, userId, userPlan }:
   }
 
   if(!fila.length) return (
+    <div style={{minHeight:"100vh",background:C.bg,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",color:C.sub,fontFamily:"sans-serif",fontSize:14,padding:24,textAlign:"center"}}>
+      <h1 style={{color:C.texto,fontSize:28,margin:"0 0 10px"}}>{access.shouldShowUpgrade ? "Seu acesso gratuito terminou" : "Nenhuma questao encontrada"}</h1>
+      <p style={{maxWidth:460,lineHeight:1.6,margin:"0 0 18px"}}>
+        {access.shouldShowUpgrade
+          ? "Voce ja aproveitou os 7 dias de treino livre. Agora o Premium libera a continuidade com questoes, revisoes e simulados."
+          : "Ajuste os filtros ou volte ao dashboard para iniciar outra sessao."}
+      </p>
+      <a href={access.shouldShowUpgrade ? "/upgrade" : "/dashboard"} style={{background:access.shouldShowUpgrade?C.amarelo:C.verde,color:"#0a0a0a",padding:"12px 18px",borderRadius:10,fontWeight:1000,textDecoration:"none"}}>
+        {access.shouldShowUpgrade ? "Assinar Premium" : "Voltar ao dashboard"}
+      </a>
+    </div>
+  );
+
+  /*
+  stale empty-state kept out of runtime
     <div style={{minHeight:"100vh",background:C.bg,display:"flex",alignItems:"center",justifyContent:"center",color:C.sub,fontFamily:"sans-serif",fontSize:14}}>
       Nenhuma questão encontrada. <a href="/" style={{color:C.verde,marginLeft:6}}>← Voltar</a>
     </div>
   );
+  */
 
   if (finished) {
     const pctFinal = Math.round((placar.ac / fila.length) * 100);
@@ -90,7 +112,7 @@ export default function QuizClient({ questions, progressMap, userId, userPlan }:
             {pctFinal}% de acerto
           </h1>
           <p style={{color:C.sub,fontSize:18,lineHeight:1.6,maxWidth:560,margin:"0 auto 28px"}}>
-            Você respondeu {fila.length} questões de demonstração. O plano gratuito para por aqui; mais de 500 questões estratégicas, revisão inteligente e simulado ficam no Premium.
+            Você respondeu {fila.length} questões. Continue usando seus 7 dias gratuitos para ganhar ritmo antes de decidir pelo Premium.
           </p>
           <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:10,margin:"0 auto 28px",maxWidth:460}}>
             <div style={{border:`1px solid ${C.border}`,background:C.card,borderRadius:12,padding:14}}>
@@ -107,11 +129,11 @@ export default function QuizClient({ questions, progressMap, userId, userPlan }:
             </div>
           </div>
           <div style={{display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap"}}>
-            <a href="/upgrade" style={{background:C.amarelo,color:"#0a0a0a",padding:"14px 22px",borderRadius:12,fontWeight:1000,textDecoration:"none",textTransform:"uppercase"}}>
+            {access.shouldShowUpgrade && <a href="/upgrade" style={{background:C.amarelo,color:"#0a0a0a",padding:"14px 22px",borderRadius:12,fontWeight:1000,textDecoration:"none",textTransform:"uppercase"}}>
               Desbloquear Premium
-            </a>
-            <a href={isGuest ? "/login" : "/dashboard"} style={{background:"rgba(255,255,255,0.05)",color:C.texto,padding:"14px 22px",borderRadius:12,fontWeight:900,textDecoration:"none",border:`1px solid ${C.border}`}}>
-              {isGuest ? "Salvar progresso" : "Ir ao dashboard"}
+            </a>}
+            <a href="/dashboard" style={{background:"rgba(255,255,255,0.05)",color:C.texto,padding:"14px 22px",borderRadius:12,fontWeight:900,textDecoration:"none",border:`1px solid ${C.border}`}}>
+              Ir ao dashboard
             </a>
           </div>
         </section>
@@ -170,19 +192,16 @@ export default function QuizClient({ questions, progressMap, userId, userPlan }:
       color:C.texto, fontFamily:"'Segoe UI',system-ui,sans-serif", padding:"18px 16px 90px"}}>
       <div style={{maxWidth:720,margin:"0 auto"}}>
         <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:18,paddingBottom:12,borderBottom:`1px solid ${C.border}`}}>
-          <a href={isGuest ? "/" : "/dashboard"} style={{color:C.sub,fontSize:12,textDecoration:"none",background:C.card,border:`1px solid ${C.border}`,borderRadius:10,padding:"5px 12px"}}>← {isGuest ? "Início" : "Dashboard"}</a>
-          <span style={{flex:1,fontSize:14,fontWeight:900,color:C.amarelo,textAlign:"center",textTransform:"uppercase"}}>{isDemo ? "Teste grátis" : "Quiz Premium"}</span>
+          <a href="/dashboard" style={{color:C.sub,fontSize:12,textDecoration:"none",background:C.card,border:`1px solid ${C.border}`,borderRadius:10,padding:"5px 12px"}}>← Dashboard</a>
+          <span style={{flex:1,fontSize:14,fontWeight:900,color:C.amarelo,textAlign:"center",textTransform:"uppercase"}}>{isTrial ? `Acesso grátis: ${access.daysRemaining}d` : isPremium ? "Quiz Premium" : "Acesso encerrado"}</span>
           <span style={{fontSize:12,color:C.sub}}>✅{placar.ac} ❌{placar.er}</span>
         </div>
 
-        {isDemo && (
+        {isTrial && (
           <div style={{background:"rgba(250,204,21,0.08)",border:"1px solid rgba(250,204,21,0.28)",borderRadius:12,padding:"10px 14px",marginBottom:16,display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
             <span style={{fontSize:12,color:C.amarelo,flex:1,fontWeight:800}}>
-              🔒 Grátis: 10 questões liberadas. Premium desbloqueia mais de 500 questões estratégicas, revisão SM-2 e simulado cronometrado.
+              Treino livre ativo por mais {access.daysRemaining} dia(s). Explore as questões e descubra seu ritmo antes de assinar.
             </span>
-            <a href="/upgrade" style={{background:C.amarelo,color:"#0a0a0a",borderRadius:8,padding:"6px 12px",fontSize:11,fontWeight:1000,textDecoration:"none",whiteSpace:"nowrap"}}>
-              Ver Premium →
-            </a>
           </div>
         )}
 

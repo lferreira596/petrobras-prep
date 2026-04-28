@@ -1,18 +1,19 @@
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { getUserStats, getStudyPlan, getUserPlan } from "@/lib/db/queries";
+import { getUserStats, getStudyPlan, getUserAccess } from "@/lib/db/queries";
 import Image from "next/image";
 
 export default async function DashboardPage() {
   const session = await auth();
   if (!session?.user?.id) redirect("/login");
 
-  const [stats, plan, userPlan] = await Promise.all([
+  const [stats, plan, access] = await Promise.all([
     getUserStats(session.user.id),
     getStudyPlan(session.user.id),
-    getUserPlan(session.user.id),
+    getUserAccess(session.user.id),
   ]);
-  const isPremium = userPlan === "premium";
+  const isPremium = access.isPremium;
+  const hasFullAccess = isPremium || access.isFreeAccessActive;
 
   return (
     <main style={{
@@ -23,7 +24,7 @@ export default async function DashboardPage() {
       <div style={{maxWidth:720, margin:"0 auto"}}>
         {/* Header */}
         <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:8,paddingBottom:12}}>
-          <Image src="/logo.png" alt="Prepara Concursos" width={170} height={60} priority style={{width:150,height:"auto",objectFit:"contain"}}/>
+          <Image src="/logo-dark.png" alt="Prepara Concursos" width={900} height={330} priority style={{width:190,height:"auto",objectFit:"contain"}}/>
         </div>
         <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16,paddingBottom:16,borderBottom:"1px solid rgba(255,255,255,0.07)"}}>
           {session.user.image && (
@@ -46,20 +47,20 @@ export default async function DashboardPage() {
         </div>
 
         {/* Banner upgrade — só para free */}
-        {!isPremium && (
+        {access.shouldShowUpgrade && (
           <a href="/upgrade" style={{display:"block",textDecoration:"none",marginBottom:16}}>
             <div style={{background:"linear-gradient(135deg,rgba(250,204,21,0.1),rgba(251,146,60,0.07))",border:"1px solid rgba(250,204,21,0.25)",borderRadius:16,padding:"14px 16px"}}>
               <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12}}>
                 <div>
                   <div style={{fontSize:13,fontWeight:800,color:"#facc15",marginBottom:4}}>
-                    ★ Você está no plano Gratuito
+                    Seu acesso gratuito terminou
                   </div>
                   <div style={{fontSize:11,color:"#94a3b8",lineHeight:1.6}}>
-                    Limitado a <strong style={{color:"#dde4ff"}}>10 questões grátis</strong> · Premium com mais de 500 questões estratégicas, simulado e analytics
+                    Continue treinando com questões estratégicas, revisão inteligente, simulado e analytics no Premium.
                   </div>
                 </div>
                 <div style={{flexShrink:0,background:"#facc15",color:"#0f172a",borderRadius:8,padding:"6px 14px",fontSize:12,fontWeight:700,whiteSpace:"nowrap"}}>
-                  Ver Premium →
+                  Assinar Premium →
                 </div>
               </div>
             </div>
@@ -105,7 +106,7 @@ export default async function DashboardPage() {
             {icon:"🧠",label:"Iniciar Quiz",desc:"Nova sessão de estudo",href:"/quiz",cor:"#00e5b4",locked:false},
             {icon:"🔁",label:"Revisar Erros",desc:`${stats.filaRevisao} questões`,href:"/revisao",cor:"#ff5050",locked:false},
             {icon:"📅",label:"Plano Semanal",desc:"Ver cronograma",href:"/plano",cor:"#f5c842",locked:false},
-            {icon:"⏱",label:"Simulado Completo",desc:"100q · 4h · Premium",href: isPremium ? "/simulado" : "/upgrade",cor:"#a78bfa",locked:!isPremium},
+            {icon:"⏱",label:"Simulado Completo",desc: hasFullAccess ? "100q · 4h" : "100q · 4h · Premium",href: hasFullAccess ? "/simulado" : "/upgrade",cor:"#a78bfa",locked:!hasFullAccess},
           ].map(a=>(
             <a key={a.label} href={a.href} style={{
               display:"block",padding:"16px",textDecoration:"none",

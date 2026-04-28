@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { getQuestions, getUserPlan } from "@/lib/db/queries";
+import { getQuestions, getUserAccess } from "@/lib/db/queries";
 
 export async function GET(req: NextRequest) {
   const session = await auth();
-  const userPlan = session?.user?.id ? await getUserPlan(session.user.id) : "free";
+  if (!session?.user?.id) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const access = await getUserAccess(session.user.id);
   const { searchParams } = new URL(req.url);
 
   const questions = await getQuestions({
@@ -14,8 +16,9 @@ export async function GET(req: NextRequest) {
     tipo    : searchParams.get("tipo")   ?? undefined,
     enfase  : searchParams.get("enfase") ?? undefined,
     limit   : Number(searchParams.get("limit") ?? 200),
-    userPlan,
+    userPlan: access.plan,
+    freeAccessActive: access.isFreeAccessActive,
   });
 
-  return NextResponse.json({ questions, userPlan });
+  return NextResponse.json({ questions, access });
 }

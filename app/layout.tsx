@@ -16,7 +16,7 @@ function getMetadataBase() {
 export const metadata: Metadata = {
   metadataBase: getMetadataBase(),
   title: "Prepara Concursos — Quem treina, passa",
-  description: "Teste 10 questões grátis sem login. Desbloqueie mais de 500 questões estratégicas, revisão inteligente e simulado para o concurso Petrobras nível técnico.",
+  description: "Treine 7 dias gratis com questões estratégicas, revisão inteligente e simulado para o concurso Petrobras nível técnico.",
   keywords: ["Petrobras", "concurso", "Cesgranrio", "questões", "técnico júnior"],
   icons: {
     icon: "/icon.png",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Prepara Concursos",
-    description: "Teste 10 questões grátis sem login e desbloqueie mais de 500 questões estratégicas para concursos.",
+    description: "Treine 7 dias gratis com questões estratégicas para concursos.",
     type: "website",
     images: [{ url: "/icon.png" }],
   },
